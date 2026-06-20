@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  boot-log-analytics:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: boot-log-analytics
+
+    env_file:
+      - .env
+
+    volumes:
+      - .:/app
+
+    restart: unless-stopped
