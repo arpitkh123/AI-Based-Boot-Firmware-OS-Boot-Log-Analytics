@@ -1,0 +1,6 @@
+kernel=u-boot.bin
+device_tree=bcm2710-rpi-3-b-plus.dtb
+enable_uart=1
+hdmi_force_hotplug=1
+arm_64bit=1
+
