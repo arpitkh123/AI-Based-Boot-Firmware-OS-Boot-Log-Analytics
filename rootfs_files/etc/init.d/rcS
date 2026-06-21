@@ -1,0 +1,19 @@
+#!/bin/sh
+
+mount -t proc none /proc
+mount -t sysfs none /sys
+
+mkdir  -p /dev/pts
+mount -t devpts devpts /dev/pts
+
+echo "Starting Network..."
+
+ifconfig lo 127.0.0.1 up
+ifconfig eth0 192.168.41.200 netmask 255.255.255.0 up
+
+echo "Starting Dropbear..."
+dropbear -R
+
+echo "Boot Successful!" > /dev/kmsg
+
+

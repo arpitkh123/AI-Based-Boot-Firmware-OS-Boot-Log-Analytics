@@ -1,0 +1,14 @@
+#!/bin/sh
+
+mount -t proc none /proc
+mount -t sysfs none /sys
+mount -t devtmpfs none /dev
+ 
+exec < /dev/console
+exec > /dev/console
+exec 2>/dev/console
+
+echo "Boot Successful"
+
+exec /bin/sh
+
