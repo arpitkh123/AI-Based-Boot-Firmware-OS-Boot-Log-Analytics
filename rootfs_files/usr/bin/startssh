@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo "Starting Dropbear SSH..."
+/usr/sbin/dropbear -R
