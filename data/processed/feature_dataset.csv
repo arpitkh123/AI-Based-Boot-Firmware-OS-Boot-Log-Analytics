@@ -1,0 +1,14 @@
+boot_duration,boot_successful,kernel_started,rootfs_mounted,init_started,login_prompt_detected,kernel_panic_detected,error_count,warning_count,info_logs,warning_logs,error_logs,success_logs,boot_logs,kernel_logs,memory_logs,filesystem_logs,network_logs,uart_logs,usb_logs,unknown_logs,template_count,total_log_messages,unique_templates,largest_template_frequency,repeated_templates,compression_ratio,template_info,template_warning,template_error,template_usb,template_kernel,template_memory,irq_failure,dma_failure,rootfs_failure,dtb_failure,oom_detected,init_failure,cpu_failure,filesystem_failure,label,file_name
+331.585867,1,1,1,1,0,0,9,1,219,1,9,66,29,155,34,11,8,16,42,0,295,295,265,6,14,0.8983,206,1,9,32,146,31,0,0,0,0,0,0,0,0,normal,logs1_19jun.txt
+331.585867,0,1,1,1,0,1,9,2,237,2,9,68,30,171,34,11,12,16,42,0,316,316,247,8,35,0.7816,202,2,9,22,144,28,0,0,0,0,0,0,0,0,error,driver_init_irq_warn_mismatch.txt
+151.013187,0,1,0,0,0,1,25,1,194,1,25,59,29,165,33,14,1,12,25,0,279,279,227,10,27,0.8136,174,1,24,12,140,27,0,0,0,0,0,0,0,0,error,driver_init_irqchip unreachable.txt
+2.312807,1,1,1,1,0,0,13,1,191,1,13,61,27,159,35,11,1,12,21,0,266,266,216,8,29,0.812,171,1,13,12,129,28,0,0,0,0,0,0,0,0,error,kernel_cpu secondary failure.txt
+2.202937,1,1,1,1,0,0,19,1,177,1,19,58,30,153,40,11,1,9,11,0,255,255,211,8,24,0.8275,161,1,19,5,125,36,0,0,0,0,0,0,0,0,error,kernel_dma alloc failure.txt
+1.947198,0,1,1,1,0,1,18,1,203,1,18,59,41,163,36,11,1,11,18,0,281,281,227,8,27,0.8078,181,1,15,11,136,29,0,0,0,0,0,0,0,0,error,kernel_no working init.txt
+2.217198,0,1,1,1,0,1,13,1,213,1,13,59,34,172,39,11,1,11,18,0,286,286,237,8,27,0.8287,193,1,13,11,144,32,0,0,0,0,0,0,0,0,error,kernel_oom_kill_init.txt
+3.583182,0,1,0,0,0,1,13,1,241,1,13,57,29,176,43,30,1,12,21,0,310,310,244,11,30,0.7871,202,1,13,12,141,36,0,0,0,0,0,0,0,0,error,kernel_wrong root partition.txt
+3.92929,0,1,0,0,0,0,7,1,318,1,7,56,48,220,35,4,17,31,27,0,382,382,259,8,64,0.678,223,1,7,16,151,27,0,0,0,0,0,0,0,0,error,logs3_5june(uboot + some kernel).txt
+,0,0,0,0,0,0,1,1,24,1,1,0,7,9,2,0,1,3,4,0,26,26,26,1,0,1.0,24,1,1,4,9,2,0,0,0,0,0,0,0,0,error,uboot_missing dtb file.txt
+,0,0,0,0,0,0,1,1,75,1,1,0,11,41,3,2,6,8,6,0,77,77,77,1,0,1.0,75,1,1,6,41,3,0,0,0,0,0,0,0,0,error,uboot_wrong dtb file.txt
+,0,0,0,0,0,0,0,0,25,0,0,0,5,11,1,0,1,3,4,0,25,25,24,2,1,0.96,24,0,0,4,10,1,0,0,0,0,0,0,0,0,error,uboot_wrong kernel image.txt
+56.026012,0,1,0,0,0,1,4,0,63,0,4,1,11,24,2,21,1,5,4,0,68,68,57,10,3,0.8382,52,0,4,4,23,2,0,0,0,0,0,0,0,0,error,uboot_wrong root partition.txt
