@@ -4,6 +4,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from src.parsers.uart_parser import UARTParser
 
+from collections import Counter
+
 
 
 def get_first_log_file():
@@ -41,10 +43,35 @@ def main():
 
         print(f"\nTotal Parsed Logs : {len(logs)}")
 
-        print("\nFirst 5 Log Entries:\n")
+        # print("\nFirst 5 Log Entries:\n")
 
-        for log in logs[:5]:
-            print(log)
+        # for log in logs[:5]:
+        #     print(log)
+
+        print("\nFirst 10 Parsed Entries:\n")
+
+        for log in logs[:10]:
+
+            print(
+                f"Line      : {log['line_number']}"
+            )
+
+            print(
+                f"Timestamp : {log['timestamp']}"
+            )
+
+            # print(
+            #     f"Stage     : {log['stage']}"
+            # )
+
+            # Use .get() so it doesn't crash if 'stage' is missing
+            print(f"Stage     : {log.get('stage', 'N/A')}")
+
+            print(
+                f"Message   : {log['message']}"
+            )
+
+            print("-" * 60)
 
         print("\nStatistics:\n")
 
@@ -54,6 +81,22 @@ def main():
             print(f"{key}: {value}")
 
         print("\nTest Completed Successfully")
+
+        stage_counter = Counter()
+
+        for log in logs:
+
+            # Again, use .get() to catch missing keys
+            stage_name = log.get("stage", "UNKNOWN")
+            stage_counter[stage_name] += 1
+
+            # stage_counter[log["stage"]] += 1
+
+        print("\nStage Summary\n")
+
+        for stage, count in stage_counter.items():
+
+            print(f"{stage:<10}: {count}")
 
     except Exception as error:
 
