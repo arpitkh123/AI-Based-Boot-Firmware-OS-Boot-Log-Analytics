@@ -76,6 +76,31 @@ def main():
             )
         )
 
+        print(
+            f"Largest Cluster : "
+            f"{stats['largest_cluster']}"
+        )
+
+        print(
+            f"Smallest Cluster : "
+            f"{stats['smallest_cluster']}"
+        )
+
+        print(
+            f"Average Cluster Size : "
+            f"{stats['average_cluster_size']}"
+        )
+
+        print(
+            f"Repeated Templates : "
+            f"{stats['repeated_templates']}"
+        )
+
+        print(
+            f"Compression Ratio : "
+            f"{stats['compression_ratio']}"
+        )            
+
         print("\n" + "=" * 70)
         print("TEMPLATE EXTRACTION TEST")
         print("=" * 70)
@@ -110,6 +135,16 @@ def main():
             print(
                 f"Count      : "
                 f"{template['count']}"
+            )
+
+            print(
+                f"Severity   : "
+                f"{template['severity_counts']}"
+            )
+
+            print(
+                f"Subsystem  : "
+                f"{template['subsystem_counts']}"
             )
 
             print(
