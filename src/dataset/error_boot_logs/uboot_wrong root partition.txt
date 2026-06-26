@@ -1,0 +1,72 @@
+U-Boot 2026.04-00729-gf0000b4a57e9 (Apr 09 2026 - 15:37:18 +0530)
+
+DRAM:  948 MiB
+RPI 3 Model B+ (0xa020d4)
+Core:  88 devices, 13 uclasses, devicetree: board
+MMC:   mmc@7e202000: 0, mmcnr@7e300000: 1
+Loading Environment from FAT... OK
+In:    serial,usbkbd
+Out:   serial,vidconsole
+Err:   serial,vidconsole
+Net:   No ethernet found.
+
+starting USB...
+USB DWC2
+Bus usb@7e980000: 5 USB Device(s) found
+       scanning usb for storage devices... 0 Storage Device(s) found
+Hit any key to stop autoboot: 2Hit any key to stop autoboot: 1Hit any key to stop autoboot: 0
+U-Boot> setenv bootargs "console=tty0 console=ttyAMA0,115200 earlycon root=/dev/mmcblk0p99 rootwait rw"
+U-Boot> fatload mmc 0:1 0x00080000 kernel8.img
+10437862 bytes read in 438 ms (22.7 MiB/s)
+U-Boot> fatload mmc 0:1 0x05600000 bcm2710-rpi-3-b-plus.dtb
+35346 bytes read in 4 ms (8.4 MiB/s)
+U-Boot> booti 0x00080000 - 0x05600000
+## Flattened Device Tree blob at 05600000
+   Booting using the fdt blob at 0x05600000
+   Loading Device Tree to 000000003ab1e000, end 000000003ab26fff ... OK
+
+Starting kernel ...
+
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+[    0.000000] Linux version 6.1.21-v8+
+[    0.000000] Machine model: Raspberry Pi 3 Model B Plus Rev 1.3
+[    0.000000] Kernel command line: console=tty0 console=ttyAMA0,115200 earlycon root=/dev/mmcblk0p99 rootwait rw
+[    0.200134] devtmpfs: initialized
+[    0.720341] mmc0: new high speed SDHC card at address 1234
+[    0.732891] mmcblk0: mmc0:1234 SA16G 14.4 GiB
+[    0.741231]  mmcblk0: p1 p2
+[    6.001234] Waiting for root device /dev/mmcblk0p99...
+[   11.003456] Waiting for root device /dev/mmcblk0p99...
+[   16.005678] Waiting for root device /dev/mmcblk0p99...
+[   21.007890] Waiting for root device /dev/mmcblk0p99...
+[   26.009012] Waiting for root device /dev/mmcblk0p99...
+[   31.011234] Waiting for root device /dev/mmcblk0p99...
+[   36.013456] Waiting for root device /dev/mmcblk0p99...
+[   41.015678] Waiting for root device /dev/mmcblk0p99...
+[   46.017890] Waiting for root device /dev/mmcblk0p99...
+[   51.019012] Waiting for root device /dev/mmcblk0p99...
+[   56.021234] VFS: Cannot open root device "mmcblk0p99" or unknown-block(0,0): error -6
+[   56.021456] Please append a correct "root=" boot option; here are the available partitions:
+[   56.021678] b300        15126528 mmcblk0
+[   56.021890]  driver: mmcblk
+[   56.022012]   b301          262144 mmcblk0p1
+[   56.022234]   b302        14862336 mmcblk0p2
+[   56.022456] Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(0,0)
+[   56.022678] CPU: 0 PID: 1 Comm: swapper/0 Not tainted 6.1.21-v8+
+[   56.022890] Call trace:
+[   56.023012]  dump_backtrace+0x0/0x1d0
+[   56.023234]  show_stack+0x18/0x30
+[   56.023456]  dump_stack_lvl+0x68/0x84
+[   56.023678]  dump_stack+0x18/0x34
+[   56.023890]  panic+0x164/0x340
+[   56.024012]  mount_block_root+0x1a8/0x260
+[   56.024234]  mount_root+0x124/0x154
+[   56.024456]  prepare_namespace+0x134/0x174
+[   56.024678]  kernel_init_freeable+0x23c/0x25c
+[   56.024890]  kernel_init+0x24/0x130
+[   56.025012]  ret_from_fork+0x10/0x20
+[   56.025234] SMP: stopping secondary CPUs
+[   56.025456] Kernel Offset: disabled
+[   56.025678] CPU features: 0x00040002,2000200c,0000421b
+[   56.025890] Memory Limit: none
+[   56.026012] ---[ end Kernel Panic - not syncing: VFS: Unable to mount root fs on unknown-block(0,0) ]---
