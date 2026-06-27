@@ -1,7 +1,7 @@
 # src/parsers/kernel_parser.py
 
 import logging
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from src.config.parser_config import (
     SEVERITY_KEYWORDS,
@@ -41,7 +41,8 @@ class KernelParser:
 
         try:
 
-            message = message.lower()
+            # message = message.lower()
+            message = message.lower().strip()
 
             for severity, keywords in SEVERITY_KEYWORDS.items():
 
@@ -65,14 +66,17 @@ class KernelParser:
 
         try:
 
-            message = message.lower()
+            # message = message.lower()
+            message = message.lower().strip()
+
+
 
             for subsystem, keywords in SUBSYSTEM_KEYWORDS.items():
 
                 if any(keyword in message for keyword in keywords):
                     return subsystem
 
-            return "KERNEL"
+            return "UNKNOWN"
 
         except Exception as error:
 
@@ -80,7 +84,7 @@ class KernelParser:
                 f"Failed to determine subsystem. Reason: {error}"
             )
 
-            return "KERNEL"
+            return "UNKNOWN"
 
     def classify_log(self, log: Dict) -> Dict:
         """
@@ -94,7 +98,25 @@ class KernelParser:
                     "Expected log entry to be a dictionary."
                 )
 
-            message = log.get("message", "")
+            message = log.get("message", "").strip()
+
+            # if not message:
+            #     raise ValueError(
+            #         "Log entry contains an empty message."
+            #     )
+
+            # message = log.get(
+            #     "message",
+            #     ""
+            # ).strip()
+
+            if not message:
+
+                logger.warning(
+                    "Skipping empty log message."
+                )
+
+                return None
 
             classified_log = log.copy()
 
@@ -132,9 +154,19 @@ class KernelParser:
 
                 try:
 
-                    classified_logs.append(
-                        self.classify_log(log)
+                    # classified_logs.append(
+                    #     self.classify_log(log)
+                    # )
+
+                    classified_log = self.classify_log(
+                        log
                     )
+
+                    if classified_log is not None:
+
+                        classified_logs.append(
+                            classified_log
+                        )
 
                 except Exception as error:
 
