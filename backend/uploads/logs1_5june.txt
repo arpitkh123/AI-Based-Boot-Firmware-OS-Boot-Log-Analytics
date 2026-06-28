@@ -1,0 +1,271 @@
+
+
+U-Boot 2026.04-00729-gf0000b4a57e9 (Apr 09 2026 - 15:37:18 +0530)
+
+DRAM:  948 MiB
+RPI 3 Model B+ (0xa020d4)
+Core:  88 devices, 13 uclasses, devicetree: board
+MMC:   mmc@7e202000: 0, mmcnr@7e300000: 1
+Loading Environment from FAT... Unable to read "uboot.env" from mmc0:1... 
+In:    serial,usbkbd
+Out:   serial,vidconsole
+Err:   serial,vidconsole
+Net:   No ethernet found.
+
+starting USB...
+USB DWC2
+Bus usb@7e980000: 5 USB Device(s) found
+       scanning usb for storage devices... 0 Storage Device(s) found
+Hit any key to stop autoboot: 2Hit any key to stop autoboot: 1Hit any key to stop autoboot: 0
+Card did not respond to voltage select! : -110
+Cannot persist EFI variables without system partition
+** Booting bootflow '<NULL>' with efi_mgr
+Loading Boot0000 'mmc 0' failed
+EFI boot manager: Cannot load any image
+Boot failed (err=-14)
+Card did not respond to voltage select! : -110
+Card did not respond to voltage select! : -110
+Card did not respond to voltage select! : -110
+Card did not respond to voltage select! : -110
+lan78xx_eth Waiting for PHY auto negotiation to complete......... TIMEOUT !
+phy_startup failed
+BOOTP broadcast 1
+BOOTP broadcast 2
+BOOTP broadcast 3
+BOOTP broadcast 4
+BOOTP broadcast 5
+BOOTP broadcast 6
+BOOTP broadcast 7
+
+Retry time exceeded; starting again
+lan78xx_eth Waiting for PHY auto negotiation to complete......... TIMEOUT !
+phy_startup failed
+BOOTP broadcast 1
+BOOTP broadcast 2
+BOOTP broadcast 3
+BOOTP broadcast 4
+BOOTP broadcast 5
+BOOTP broadcast 6
+BOOTP broadcast 7
+
+Retry time exceeded; starting again
+U-Boot> mmc dev 0
+switch to partitions #0, OK
+mmc0 is current device
+U-Boot> fatls mmc 0:1
+    30393   bcm2708-rpi-b.dtb
+    30696   bcm2708-rpi-b-plus.dtb
+    30055   bcm2708-rpi-b-rev1.dtb
+    29996   bcm2708-rpi-cm.dtb
+    30006   bcm2708-rpi-zero.dtb
+    31873   bcm2708-rpi-zero-w.dtb
+    32390   bcm2709-rpi-2-b.dtb
+    32165   bcm2709-rpi-cm2.dtb
+    32539   bcm2710-rpi-2-b.dtb
+    34731   bcm2710-rpi-3-b.dtb
+    35346   bcm2710-rpi-3-b-plus.dtb
+    33720   bcm2710-rpi-cm0.dtb
+    32302   bcm2710-rpi-cm3.dtb
+    33708   bcm2710-rpi-zero-2.dtb
+    33708   bcm2710-rpi-zero-2-w.dtb
+    56377   bcm2711-rpi-400.dtb
+    56373   bcm2711-rpi-4-b.dtb
+    56894   bcm2711-rpi-cm4.dtb
+    39913   bcm2711-rpi-cm4-io.dtb
+    53824   bcm2711-rpi-cm4s.dtb
+    78683   bcm2712d0-rpi-5-b.dtb
+    78679   bcm2712-d-rpi-5-b.dtb
+    78635   bcm2712-rpi-500.dtb
+    78679   bcm2712-rpi-5-b.dtb
+    79624   bcm2712-rpi-cm5-cm4io.dtb
+    79690   bcm2712-rpi-cm5-cm5io.dtb
+    79665   bcm2712-rpi-cm5l-cm4io.dtb
+    79731   bcm2712-rpi-cm5l-cm5io.dtb
+    52624   bootcode.bin
+    18693   COPYING.linux
+     3272   fixup4cd.dat
+     5498   fixup4.dat
+     8491   fixup4db.dat
+     8493   fixup4x.dat
+     3272   fixup_cd.dat
+     7367   fixup.dat
+    10334   fixup_db.dat
+    10336   fixup_x.dat
+ 10443516   kernel_2712.img
+  8052824   kernel7.img
+  8052824   kernel7l.img
+ 10437862   kernel8.img
+ 10484362   kernel8_rt.img
+  7708232   kernel.img
+     1594   LICENCE.broadcom
+            overlays/
+   850300   start4cd.elf
+  3802024   start4db.elf
+  2303680   start4.elf
+  3051304   start4x.elf
+   850300   start_cd.elf
+  4873960   start_db.elf
+  3027872   start.elf
+  3774952   start_x.elf
+   660384   u-boot.bin
+ 46055936   Image
+        1   bcm2710-rpi-3b-plus.dtb
+      104   config.txt
+            System Volume Information/
+
+57 file(s), 2 dir(s)
+
+U-Boot> fatload mmc 0:1 ${kernel_addr_r} krnel     kernel8.img
+10437862 bytes read in 439 ms (22.7 MiB/s)
+U-Boot> fatloaf   d mmc 0:1 ${fdt_addr_r} bcm2710-rpi-3-b-plus.dtb
+35346 bytes read in 4 ms (8.4 MiB/s)
+U-Boot> setenv bootargs "x console=tty0 1 console=ty tyS0, 115200 root=/dev/mmcb lk   lkp o 0p2 rootwait rw"
+U-Boot> printenv bootargs
+bootargs=console=tty1 console=ttyS0, 115200 root=/dev/mmcblk0p2 rootwait rw
+U-Boot> booti ${kernel_dd  addr_r} $ - ${fdt_addr_
+> > > > r}
+   Uncompressing Kernel Image to 0
+Moving Image from 0x80000 to 0x200000, end=0x1e10000
+Working FDT set to 0
+FDT and ATAGS support not compiled in
+
+resetting ...
+
+
+U-Boot 2026.04-00729-gf0000b4a57e9 (Apr 09 2026 - 15:37:18 +0530)
+
+DRAM:  948 MiB
+RPI 3 Model B+ (0xa020d4)
+Core:  88 devices, 13 uclasses, devicetree: board
+MMC:   mmc@7e202000: 0, mmcnr@7e300000: 1
+Loading Environment from FAT... Unable to read "uboot.env" from mmc0:1... 
+In:    serial,usbkbd
+Out:   serial,vidconsole
+Err:   serial,vidconsole
+Net:   No ethernet found.
+
+starting USB...
+USB DWC2
+Bus usb@7e980000: 5 USB Device(s) found
+       scanning usb for storage devices... 0 Storage Device(s) found
+Hit any key to stop autoboot: 2Hit any key to stop autoboot: 1Hit any key to stop autoboot: 0
+Card did not respond to voltage select! : -110
+Cannot persist EFI variables without system partition
+** Booting bootflow '<NULL>' with efi_mgr
+Loading Boot0000 'mmc 0' failed
+EFI boot manager: Cannot load any image
+Boot failed (err=-14)
+Card did not respond to voltage select! : -110
+Card did not respond to voltage select! : -110
+Card did not respond to voltage select! : -110
+Card did not respond to voltage select! : -110
+lan78xx_eth Waiting for PHY auto negotiation to complete......... TIMEOUT !
+phy_startup failed
+BOOTP broadcast 1
+BOOTP broadcast 2
+BOOTP broadcast 3
+BOOTP broadcast 4
+BOOTP broadcast 5
+BOOTP broadcast 6
+BOOTP broadcast 7
+BOOTP broadcast 8
+
+Retry time exceeded; starting again
+lan78xx_eth Waiting for PHY auto negotiation to complete......... TIMEOUT !
+phy_startup failed
+BOOTP broadcast 1
+BOOTP broadcast 2
+BOOTP broadcast 3
+BOOTP broadcast 4
+BOOTP broadcast 5
+BOOTP broadcast 6
+BOOTP broadcast 7
+
+Retry time exceeded; starting again
+U-Boot> mmc   list
+mmc@7e202000: 0 (SD)
+mmcnr@7e300000: 1
+U-Boot> mmv c dev 0
+switch to partitions #0, OK
+mmc0 is current device
+U-Boot> fatls mmc 0:1 
+    30393   bcm2708-rpi-b.dtb
+    30696   bcm2708-rpi-b-plus.dtb
+    30055   bcm2708-rpi-b-rev1.dtb
+    29996   bcm2708-rpi-cm.dtb
+    30006   bcm2708-rpi-zero.dtb
+    31873   bcm2708-rpi-zero-w.dtb
+    32390   bcm2709-rpi-2-b.dtb
+    32165   bcm2709-rpi-cm2.dtb
+    32539   bcm2710-rpi-2-b.dtb
+    34731   bcm2710-rpi-3-b.dtb
+    35346   bcm2710-rpi-3-b-plus.dtb
+    33720   bcm2710-rpi-cm0.dtb
+    32302   bcm2710-rpi-cm3.dtb
+    33708   bcm2710-rpi-zero-2.dtb
+    33708   bcm2710-rpi-zero-2-w.dtb
+    56377   bcm2711-rpi-400.dtb
+    56373   bcm2711-rpi-4-b.dtb
+    56894   bcm2711-rpi-cm4.dtb
+    39913   bcm2711-rpi-cm4-io.dtb
+    53824   bcm2711-rpi-cm4s.dtb
+    78683   bcm2712d0-rpi-5-b.dtb
+    78679   bcm2712-d-rpi-5-b.dtb
+    78635   bcm2712-rpi-500.dtb
+    78679   bcm2712-rpi-5-b.dtb
+    79624   bcm2712-rpi-cm5-cm4io.dtb
+    79690   bcm2712-rpi-cm5-cm5io.dtb
+    79665   bcm2712-rpi-cm5l-cm4io.dtb
+    79731   bcm2712-rpi-cm5l-cm5io.dtb
+    52624   bootcode.bin
+    18693   COPYING.linux
+     3272   fixup4cd.dat
+     5498   fixup4.dat
+     8491   fixup4db.dat
+     8493   fixup4x.dat
+     3272   fixup_cd.dat
+     7367   fixup.dat
+    10334   fixup_db.dat
+    10336   fixup_x.dat
+ 10443516   kernel_2712.img
+  8052824   kernel7.img
+  8052824   kernel7l.img
+ 10437862   kernel8.img
+ 10484362   kernel8_rt.img
+  7708232   kernel.img
+     1594   LICENCE.broadcom
+            overlays/
+   850300   start4cd.elf
+  3802024   start4db.elf
+  2303680   start4.elf
+  3051304   start4x.elf
+   850300   start_cd.elf
+  4873960   start_db.elf
+  3027872   start.elf
+  3774952   start_x.elf
+   660384   u-boot.bin
+ 46055936   Image
+        1   bcm2710-rpi-3b-plus.dtb
+      104   config.txt
+            System Volume Information/
+
+57 file(s), 2 dir(s)
+
+U-Boot> fatload mmc 0:1 ${kernel_addr- _r} kernel8.img
+10437862 bytes read in 439 ms (22.7 MiB/s)
+U-Boot> fatload mmc 0:1 ${fdt_addr_r} bcm 2710     2710-rpi-3-b-plus.dtb
+35346 bytes read in 4 ms (8.4 MiB/s)
+U-Boot> setenv bootargs "console=tty1 ttyS    console=ttyS0, 115200 root=/dev/mmcblk0p2 rootwait rw"
+U-Boot> printenv bootargs
+bootargs=console=tty1 console=ttyS0, 115200 root=/dev/mmcblk0p2 rootwait rw
+U-Boot> booti ${kernel_addr_r} - ${fdt_addr_r}
+   Uncompressing Kernel Image to 0
+Moving Image from 0x80000 to 0x200000, end=0x1e10000
+## Flattened Device Tree blob at 05600000
+   Booting using the fdt blob at 0x5600000
+Working FDT set to 5600000
+   Loading Device Tree to 000000001fff4000, end 000000001ffffa11 ... OK
+Working FDT set to 1fff4000
+
+Starting kernel ...
+
