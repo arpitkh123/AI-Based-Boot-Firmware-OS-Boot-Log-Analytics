@@ -284,7 +284,7 @@ class BootParser:
         ]
 
         if not timestamps:
-            return None
+            return 0.0
 
         return round(
             timestamps[-1] - timestamps[0],
