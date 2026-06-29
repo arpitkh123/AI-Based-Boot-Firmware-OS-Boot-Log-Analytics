@@ -1,0 +1,47 @@
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+[    0.000000] Linux version 6.18.21-v8+ (dom@buildbot) (aarch64-linux-gnu-gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #1967 SMP PREEMPT Wed Apr  8 18:17:01 BST 2026
+[    0.000000] KASLR enabled
+[    0.000000] Machine model: Raspberry Pi 3 Model B Plus Rev 1.4
+[    0.000000] Reserved memory: created CMA memory pool at 0x0000000037400000, size 64 MiB
+[    0.000000] OF: reserved mem: initialized node linux,cma, compatible id shared-dma-pool
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem 0x0000000000000000-0x000000003b3fffff]
+[    0.000000] pcpu-alloc: s95448 r8192 d31528 u135168 alloc=33*4096
+[    0.000000] Detected VIPT I-cache on CPU0
+[    0.000000] CPU features: detected: Kernel page table isolation (KPTI)
+[    0.004608] smp: Bringing up secondary CPUs ...
+[    0.005119] Detected VIPT I-cache on CPU1
+[    0.005267] CPU1: Booted secondary processor 0x0000000001 [0x410fd034]
+[    0.006034] Detected VIPT I-cache on CPU2
+[    0.006149] CPU2: Booted secondary processor 0x0000000002 [0x410fd034]
+[    0.006823] Detected VIPT I-cache on CPU3
+[    0.006930] CPU3: Booted secondary processor 0x0000000003 [0x410fd034]
+[    0.007126] smp: Brought up 1 node, 4 CPUs
+[    0.007191] SMP: Total of 4 processors activated.
+[    0.008547] Memory: 850408K/970752K available (14848K kernel code, 2446K rwdata, 5068K rodata)
+[    0.052453] vgaarb: loaded
+[    0.052781] clocksource: Switched to clocksource arch_sys_counter
+[    1.524607] dwc_otg 3f980000.usb: DWC OTG Controller
+[    1.865248] mmcblk0: mmc0:d555 SK128 119 GiB
+[    1.930977] EXT4-fs (mmcblk0p2): mounted filesystem 990a05e4-d62a-49d6-8c1d-91d8dac30c9b r/w with ordered data mode.
+[    1.945517] Run /sbin/init as init process
+[   23.451234] watchdog: BUG: soft lockup - CPU#2 stuck for 22s! [kworker/2:1:45]
+[   23.451245] Modules linked in: bcm2835_rng rng_core uio_pdrv_genirq uio
+[   23.451252] CPU: 2 UID: 0 PID: 45 Comm: kworker/2:1 Not tainted 6.18.21-v8+ #1967 PREEMPT
+[   23.451257] Hardware name: Raspberry Pi 3 Model B Plus Rev 1.4 (DT)
+[   23.451261] pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+[   23.451268] pc : queued_spin_lock_slowpath+0x1a8/0x2c0
+[   23.451275] lr : queued_spin_lock_slowpath+0x64/0x2c0
+[   23.451280] Call trace:
+[   23.451286]  queued_spin_lock_slowpath+0x1a8/0x2c0
+[   23.451293]  _raw_spin_lock_irqsave+0x68/0x88
+[   23.451300]  try_to_wake_up+0x54/0x4a0
+[   23.451308]  wake_up_process+0x18/0x28
+[   23.451315]  insert_work+0x7c/0x100
+[   23.451322]  __queue_work+0x164/0x3d0
+[   23.452011] Kernel panic - not syncing: softlockup: hung tasks
+[   23.452019] SMP: stopping secondary CPUs
+[   23.452035] Kernel Offset: 0x2017e00000 from 0xfffffffc080000000
+[   23.452042] PHYS_OFFSET: 0x0
+[   23.452048] Memory Limit: none
+[   23.452100] ---[ end Kernel panic - not syncing: softlockup: hung tasks ]---

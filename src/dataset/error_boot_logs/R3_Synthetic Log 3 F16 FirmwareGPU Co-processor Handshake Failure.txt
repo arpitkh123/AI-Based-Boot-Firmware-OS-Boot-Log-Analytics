@@ -1,0 +1,27 @@
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+[    0.000000] Linux version 6.18.21-v8+ (dom@buildbot) (aarch64-linux-gnu-gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #1967 SMP PREEMPT Wed Apr  8 18:17:01 BST 2026
+[    0.000000] KASLR enabled
+[    0.000000] Machine model: Raspberry Pi 3 Model B Plus Rev 1.4
+[    0.000000] Reserved memory: created CMA memory pool at 0x0000000037400000, size 64 MiB
+[    0.000000] pcpu-alloc: s95448 r8192 d31528 u135168 alloc=33*4096
+[    0.000000] Detected VIPT I-cache on CPU0
+[    0.004608] smp: Bringing up secondary CPUs ...
+[    0.007126] smp: Brought up 1 node, 4 CPUs
+[    0.007191] SMP: Total of 4 processors activated.
+[    0.008547] Memory: 850408K/970752K available
+[    0.021589] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.029199] Serial: AMBA PL011 UART driver
+[    0.031643] bcm2835-mbox 3f00b880.mailbox: mailbox enabled
+[    0.036436] bcm2835-mbox: Timeout waiting for response
+[    0.036500] raspberrypi-firmware soc:firmware: Request 0x00040001 failed with status 0x80000000
+[    0.036550] raspberrypi-firmware soc:firmware: Failed to retrieve firmware revision
+[    0.037000] Kernel panic - not syncing: Fatal firmware communication failure
+[    0.037008] CPU: 0 UID: 0 PID: 1 Comm: swapper/0 Not tainted 6.18.21-v8+ #1967 PREEMPT
+[    0.037013] Hardware name: Raspberry Pi 3 Model B Plus Rev 1.4 (DT)
+[    0.037019] Call trace:
+[    0.037025]  dump_stack_lvl+0x38/0x90
+[    0.037031]  panic+0x68/0x70
+[    0.037037]  rpi_firmware_probe+0xc4/0x180
+[    0.037043]  platform_probe+0x6c/0xd8
+[    0.038000] SMP: stopping secondary CPUs
+[    0.039000] ---[ end Kernel panic - not syncing: Fatal firmware communication failure ]---

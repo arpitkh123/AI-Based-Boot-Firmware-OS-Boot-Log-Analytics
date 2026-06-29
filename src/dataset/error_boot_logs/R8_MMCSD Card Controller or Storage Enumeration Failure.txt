@@ -1,0 +1,39 @@
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+[    0.000000] Linux version 6.18.21-v8+ (dom@buildbot) (aarch64-linux-gnu-gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #1967 SMP PREEMPT Wed Apr  8 18:17:01 BST 2026
+[    0.000000] KASLR enabled
+[    0.000000] Machine model: Raspberry Pi 3 Model B Plus Rev 1.4
+[    0.000000] Reserved memory: created CMA memory pool at 0x0000000037400000, size 64 MiB
+[    0.000000] pcpu-alloc: s95448 r8192 d31528 u135168 alloc=33*4096
+[    0.000000] Detected VIPT I-cache on CPU0
+[    0.004608] smp: Bringing up secondary CPUs ...
+[    0.007126] smp: Brought up 1 node, 4 CPUs
+[    0.007191] SMP: Total of 4 processors activated.
+[    0.021589] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.029199] Serial: AMBA PL011 UART driver
+[    0.031643] bcm2835-mbox 3f00b880.mailbox: mailbox enabled
+[    0.040430] raspberrypi-firmware soc:firmware: Firmware hash is ce768004a1c9657e60b33b0cc413d8e07320cb0d
+[    1.065110] io scheduler mq-deadline registered
+[    1.524607] dwc_otg 3f980000.usb: DWC OTG Controller
+[    1.621016] bcm2835-wdt bcm2835-wdt: Broadcom BCM2835 watchdog timer
+[    1.626476] mmc-bcm2835 3f300000.mmcnr: mmc_debug:0 mmc_debug2:0
+[    1.627972] mmc-bcm2835 3f300000.mmcnr: DMA channel allocated
+[    1.731005] Waiting for root device /dev/mmcblk0p2...
+[    2.831000] mmc0: error -110 whilst initialising SD card
+[    3.931000] mmc0: card never left busy state
+[    5.031000] mmc0: error -110 whilst initialising SD card
+[    6.131000] mmc0: error -110 whilst initialising SD card
+[    6.140000] VFS: Cannot open root device "mmcblk0p2" or unknown-block(0,0): error -6
+[    6.141000] Please append a correct "root=" boot option; here are the available partitions:
+[    6.142000] Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(0,0)
+[    6.142010] CPU: 0 UID: 0 PID: 1 Comm: swapper/0 Not tainted 6.18.21-v8+ #1967 PREEMPT
+[    6.142016] Hardware name: Raspberry Pi 3 Model B Plus Rev 1.4 (DT)
+[    6.142021] Call trace:
+[    6.142027]  dump_stack_lvl+0x38/0x90
+[    6.142033]  panic+0x68/0x70
+[    6.142039]  mount_root_generic+0x230/0x360
+[    6.142045]  mount_root+0x174/0x2f0
+[    6.142051]  prepare_namespace+0x78/0x2b8
+[    6.142057]  kernel_init_freeable+0x35c/0x3c8
+[    6.142063]  kernel_init+0x28/0x1f8
+[    6.143000] SMP: stopping secondary CPUs
+[    6.144000] ---[ end Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(0,0) ]---

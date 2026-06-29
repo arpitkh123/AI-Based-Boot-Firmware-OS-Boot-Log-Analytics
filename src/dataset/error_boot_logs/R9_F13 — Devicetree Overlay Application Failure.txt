@@ -1,0 +1,36 @@
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+[    0.000000] Linux version 6.18.21-v8+ (dom@buildbot) (aarch64-linux-gnu-gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #1967 SMP PREEMPT Wed Apr  8 18:17:01 BST 2026
+[    0.000000] KASLR enabled
+[    0.000000] Machine model: Raspberry Pi 3 Model B Plus Rev 1.4
+[    0.000000] OF: fdt: fdt_overlay_apply(): FDT_ERR_NOTFOUND
+[    0.000000] OF: overlay: Failed to find target node
+[    0.000000] Reserved memory: created CMA memory pool at 0x0000000037400000, size 64 MiB
+[    0.000000] pcpu-alloc: s95448 r8192 d31528 u135168 alloc=33*4096
+[    0.000000] Detected VIPT I-cache on CPU0
+[    0.004608] smp: Bringing up secondary CPUs ...
+[    0.007126] smp: Brought up 1 node, 4 CPUs
+[    0.007191] SMP: Total of 4 processors activated.
+[    0.021589] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.029199] Serial: AMBA PL011 UART driver
+[    0.031643] bcm2835-mbox 3f00b880.mailbox: mailbox enabled
+[    0.040430] raspberrypi-firmware soc:firmware: Firmware hash is ce768004a1c9657e60b33b0cc413d8e07320cb0d
+[    1.065110] io scheduler mq-deadline registered
+[    1.524607] dwc_otg 3f980000.usb: DWC OTG Controller
+[    1.621016] bcm2835-wdt bcm2835-wdt: Broadcom BCM2835 watchdog timer
+[    1.621510] fb_ili9341: probe of spi0.0 failed with error -2
+[    1.621612] fb_ili9341: spi setup failed, overlay dependencies missing
+[    1.731005] Waiting for root device /dev/mmcblk0p2...
+[    1.865248] mmcblk0: mmc0:d555 SK128 119 GiB
+[    1.930977] EXT4-fs (mmcblk0p2): mounted filesystem r/w with ordered data mode.
+[    1.945517] Run /sbin/init as init process
+[    1.946115] init: unable to execute /etc/rc.local (ENOENT)
+[    1.948212] Kernel panic - not syncing: Attempted to kill init! exitcode=0x00007f00
+[    1.948220] CPU: 2 UID: 0 PID: 1 Comm: init Not tainted 6.18.21-v8+ #1967 PREEMPT
+[    1.948225] Hardware name: Raspberry Pi 3 Model B Plus Rev 1.4 (DT)
+[    1.948231] Call trace:
+[    1.948237]  dump_stack_lvl+0x38/0x90
+[    1.948243]  panic+0x68/0x70
+[    1.948249]  do_exit+0x848/0xb58
+[    1.948255]  do_group_exit+0x38/0xa8
+[    1.949000] SMP: stopping secondary CPUs
+[    1.950000] ---[ end Kernel panic - not syncing: Attempted to kill init! exitcode=0x00007f00 ]---
