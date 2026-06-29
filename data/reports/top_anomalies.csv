@@ -1,0 +1,6 @@
+file_name,label,anomaly_prediction,anomaly_score,anomaly_strength
+logs3_5june(uboot + some kernel).txt,error,-1,-0.17538869254136857,17.54
+driver_init_irq_warn_mismatch.txt,error,-1,-0.13543608366084203,13.54
+kernel_wrong root partition.txt,error,-1,-0.10551892943163443,10.55
+driver_init_irqchip unreachable.txt,error,-1,-0.09484177163593721,9.48
+uboot_wrong dtb file.txt,error,-1,-0.07547714537750028,7.55

@@ -1,0 +1,7 @@
+Metric,Value
+total_samples,42
+total_features,52
+normal_samples,16
+error_samples,26
+missing_values,0
+duplicate_rows,0
