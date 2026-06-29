@@ -1,0 +1,87 @@
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+[    0.000000] Linux version 6.18.21-v8+ (dom@buildbot) (aarch64-linux-gnu-gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #1967 SMP PREEMPT Wed Apr  8 18:17:01 BST 2026
+[    0.000000] KASLR enabled
+[    0.000000] Machine model: Raspberry Pi 3 Model B Plus Rev 1.4
+[    0.000000] efi: UEFI not found.
+[    0.000000] Reserved memory: created CMA memory pool at 0x0000000037400000, size 64 MiB
+[    0.000000] OF: reserved mem: initialized node linux,cma, compatible id shared-dma-pool
+[    0.000000] NUMA: Faking a node at [mem 0x0000000000000000-0x000000003b3fffff]
+[    0.000000] NODE_DATA(0) allocated [mem 0x371fe340-0x372010bf]
+[    0.000000] pcpu-alloc: s95448 r8192 d31528 u135168 alloc=33*4096
+[    0.000000] Detected VIPT I-cache on CPU0
+[    0.000000] CPU features: kernel page table isolation forced ON by KASLR
+[    0.000000] Kernel command line: console=tty1 console=ttyAMA0,115200 root=/dev/mmcblk0p2 rootwait rw
+[    0.000000] printk: log buffer data + meta data: 131072 + 458752 = 589824 bytes
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+[    0.000000] rcu: Preemptible hierarchical RCU implementation.
+[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[    0.000000] arch_timer: cp15 timer running at 19.20MHz (phys).
+[    0.000210] printk: legacy console [tty1] enabled
+[    0.000725] Calibrating delay loop (skipped), value calculated using timer frequency.. 38.40 BogoMIPS (lpj=76800)
+[    0.004620] smp: Bringing up secondary CPUs ...
+[    0.005135] Detected VIPT I-cache on CPU1
+[    0.005285] CPU1: Booted secondary processor 0x0000000001 [0x410fd034]
+[    0.006050] Detected VIPT I-cache on CPU2
+[    0.006160] CPU2: Booted secondary processor 0x0000000002 [0x410fd034]
+[    0.006840] Detected VIPT I-cache on CPU3
+[    0.006945] CPU3: Booted secondary processor 0x0000000003 [0x410fd034]
+[    0.007140] smp: Brought up 1 node, 4 CPUs
+[    0.007205] SMP: Total of 4 processors activated.
+[    0.008570] Memory: 850408K/970752K available (14848K kernel code, 2446K rwdata, 5068K rodata, 5632K init, 505K bss, 49360K reserved, 65536K cma-reserved)
+[    0.021605] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.025840] DMA: preallocated 128 KiB GFP_KERNEL pool for atomic allocations
+[    0.028150] thermal_sys: Registered thermal governor 'step_wise'
+[    0.029215] Serial: AMBA PL011 UART driver
+[    0.036450] raspberrypi-firmware soc:firmware: Attached to firmware from 2026-02-11T18:31:36, variant start
+[    0.040450] raspberrypi-firmware soc:firmware: Firmware hash is ce768004a1c9657e60b33b0cc413d8e07320cb0d
+[    0.050780] SCSI subsystem initialized
+[    0.052800] clocksource: Switched to clocksource arch_sys_counter
+[    0.060020] NET: Registered PF_INET protocol family
+[    0.062380] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    0.067140] kvm [1]: nv: 568 coarse grained trap handlers
+[    1.064170] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+[    1.070530] bcm2708_fb soc:fb: FB found 1 display(s)
+[    1.090495] bcm2708_fb soc:fb: Registered framebuffer for display 0, size 1824x984
+[    1.121730] usbcore: registered new interface driver lan78xx
+[    1.121840] usbcore: registered new interface driver smsc95xx
+[    1.524675] dwc_otg 3f980000.usb: new USB bus registered, assigned bus number 1
+[    1.529280] usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.18
+[    1.536950] hub 1-0:1.0: USB hub found
+[    1.547820] sdhci: Secure Digital Host Controller Interface driver
+[    1.563780] NET: Registered PF_PACKET protocol family
+[    1.610435] 3f201000.serial: ttyAMA1 at MMIO 0x3f201000 (irq = 99, base_baud = 0) is a PL011 rev2
+[    1.621020] bcm2835-wdt bcm2835-wdt: Broadcom BCM2835 watchdog timer
+[    1.731010] Waiting for root device /dev/mmcblk0p2...
+[    1.862980] mmc0: new high speed SDXC card at address d555
+[    1.865250] mmcblk0: mmc0:d555 SK128 119 GiB
+[    1.900680] mmcblk0: mmc0:d555 SK128 119 GiB (quirks 0x00004000)
+[    1.918415] EXT4-fs (mmcblk0p2): INFO: recovery required on readonly filesystem
+[    1.919095] EXT4-fs (mmcblk0p2): write access will be enabled during recovery
+[    1.928540] EXT4-fs (mmcblk0p2): cleaning up 1 orphan inode
+[    1.930980] EXT4-fs (mmcblk0p2): mounted filesystem 990a05e4-d62a-49d6-8c1d-91d8dac30c9b r/w with ordered data mode. Quota mode: none.
+[    1.932680] VFS: Mounted root (ext4 filesystem) on device 179:2.
+[    1.945520] Run /sbin/init as init process
+[    2.025055] usb 1-1: New USB device found, idVendor=0424, idProduct=2514, bcdDevice= b.b3
+[    2.029030] hub 1-1:1.0: USB hub found
+[    2.030810] hub 1-1:1.0: 4 ports detected
+[    2.202940] Boot Successful!
+[    2.312810] usb 1-1.1: new high-speed USB device number 3 using dwc_otg
+[    2.416955] usb 1-1.1: New USB device found, idVendor=0424, idProduct=2514, bcdDevice= b.b3
+[    2.420530] hub 1-1.1:1.0: USB hub found
+[    2.422170] hub 1-1.1:1.0: 3 ports detected
+[    2.508795] usb 1-1.2: new low-speed USB device number 4 using dwc_otg
+[    2.617740] usb 1-1.2: New USB device found, idVendor=1532, idProduct=0084, bcdDevice= 2.00
+[    2.620805] usb 1-1.2: Product: Razer DeathAdder V2
+[    2.622355] usb 1-1.2: Manufacturer: Razer
+[    2.629510] hid-generic 0003:1532:0084.0001: input,hidraw0: USB HID v1.11 Mouse [Razer Razer DeathAdder V2] on usb-3f980000.usb-1.2/input0
+[    2.716795] usb 1-1.3: new low-speed USB device number 5 using dwc_otg
+[    2.857385] usb 1-1.3: New USB device found, idVendor=045e, idProduct=07b2, bcdDevice= 1.10
+[    2.860790] usb 1-1.3: Product: Microsoft Sculpt Ergonomic Keyboard
+[    2.862435] usb 1-1.3: Manufacturer: Microsoft
+[    2.961045] hid-generic 0003:045E:07B2.0002: input,hidraw1: USB HID v1.11 Keyboard [Microsoft Microsoft Sculpt Ergonomic Keyboard] on usb-3f980000.usb-1.3/input0
+[    3.244800] usb 1-1.1.1: new high-speed USB device number 6 using dwc_otg
+[    3.349020] usb 1-1.1.1: New USB device found, idVendor=0424, idProduct=7800, bcdDevice= 3.00
+[    3.621355] lan78xx 1-1.1.1:1.0 (unnamed net_device) (uninitialized): int urb period 64
+[    3.714790] lan78xx 1-1.1.1:1.0 (unnamed net_device) (uninitialized): PHY [usb-001:006:01] driver [Microchip LAN88xx] (irq=POLL)
+[   10.135720] lan78xx 1-1.1.1:1.0 eth0: configuring for phy/gmii link mode
+[   13.329885] lan78xx 1-1.1.1:1.0 eth0: Link is Up - 1Gbps/Full - flow control off

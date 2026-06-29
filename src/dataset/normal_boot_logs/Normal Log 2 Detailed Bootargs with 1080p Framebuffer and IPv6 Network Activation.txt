@@ -1,0 +1,95 @@
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+[    0.000000] Linux version 6.18.21-v8+ (dom@buildbot) (aarch64-linux-gnu-gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #1967 SMP PREEMPT Wed Apr  8 18:17:01 BST 2026
+[    0.000000] KASLR enabled
+[    0.000000] random: crng init done
+[    0.000000] Machine model: Raspberry Pi 3 Model B Plus Rev 1.4
+[    0.000000] efi: UEFI not found.
+[    0.000000] Reserved memory: created CMA memory pool at 0x0000000037400000, size 64 MiB
+[    0.000000] OF: reserved mem: initialized node linux,cma, compatible id shared-dma-pool
+[    0.000000] NUMA: Faking a node at [mem 0x0000000000000000-0x000000003b3fffff]
+[    0.000000] NODE_DATA(0) allocated [mem 0x371fddc0-0x37200b3f]
+[    0.000000] pcpu-alloc: s95448 r8192 d31528 u135168 alloc=33*4096
+[    0.000000] Detected VIPT I-cache on CPU0
+[    0.000000] CPU features: kernel page table isolation forced ON by KASLR
+[    0.000000] Kernel command line: coherent_pool=1M 8250.nr_uarts=1 cgroup_disable=memory bcm2708_fb.fbwidth=1920 bcm2708_fb.fbheight=1080 bcm2708_fb.fbswap=1 vc_mem.mem_base=0x3ec00000 vc_mem.mem_size=0x40000000 console=ttyAMA0,115200 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait rw
+[    0.000000] cgroup: Disabling memory control group subsystem
+[    0.000000] printk: log buffer data + meta data: 131072 + 458752 = 589824 bytes
+[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+[    0.000000] rcu: Preemptible hierarchical RCU implementation.
+[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[    0.000000] Root IRQ handler: bcm2836_arm_irqchip_handle_irq
+[    0.000000] arch_timer: cp15 timer running at 19.20MHz (phys).
+[    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x46d987e47, max_idle_ns: 440795202767 ns
+[    0.000210] printk: legacy console [tty1] enabled
+[    0.000712] Calibrating delay loop (skipped), value calculated using timer frequency.. 38.40 BogoMIPS (lpj=76800)
+[    0.004250] smp: Bringing up secondary CPUs ...
+[    0.004705] Detected VIPT I-cache on CPU1
+[    0.004835] CPU1: Booted secondary processor 0x0000000001 [0x410fd034]
+[    0.005512] Detected VIPT I-cache on CPU2
+[    0.005615] CPU2: Booted secondary processor 0x0000000002 [0x410fd034]
+[    0.006185] Detected VIPT I-cache on CPU3
+[    0.006282] CPU3: Booted secondary processor 0x0000000003 [0x410fd034]
+[    0.006470] smp: Brought up 1 node, 4 CPUs
+[    0.006535] SMP: Total of 4 processors activated.
+[    0.007705] Memory: 850408K/970752K available (14848K kernel code, 2446K rwdata, 5068K rodata, 5632K init, 505K bss, 49360K reserved, 65536K cma-reserved)
+[    0.016972] pinctrl core: initialized pinctrl subsystem
+[    0.019670] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.026015] thermal_sys: Registered thermal governor 'step_wise'
+[    0.027000] Serial: AMBA PL011 UART driver
+[    0.037715] raspberrypi-firmware soc:firmware: Attached to firmware from 2026-02-11T18:31:36, variant start
+[    0.041720] raspberrypi-firmware soc:firmware: Firmware hash is ce768004a1c9657e60b33b0cc413d8e07320cb0d
+[    0.049165] bcm2835-dma 3f007000.dma-controller: DMA legacy API manager, dmachans=0x1
+[    0.051465] SCSI subsystem initialized
+[    0.053460] clocksource: Switched to clocksource arch_sys_counter
+[    0.059460] NET: Registered PF_INET protocol family
+[    0.061600] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    0.070665] kvm [1]: Hyp nVHE mode initialized successfully
+[    1.064585] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 246)
+[    1.070515] bcm2708_fb soc:fb: FB found 1 display(s)
+[    1.098765] Console: switching to colour frame buffer device 240x67
+[    1.104310] bcm2708_fb soc:fb: Registered framebuffer for display 0, size 1920x1080
+[    1.116765] Serial: 8250/16550 driver, 1 ports, IRQ sharing enabled
+[    1.118625] vc-mem: phys_addr:0x00000000 mem_base=0x3ec00000 mem_size:0x40000000(1024 MiB)
+[    1.135890] usbcore: registered new interface driver lan78xx
+[    1.136185] dwc_otg: version 3.00a 10-AUG-2012 (platform bus)
+[    2.066245] dwc_otg 3f980000.usb: DWC OTG Controller
+[    2.066300] dwc_otg 3f980000.usb: new USB bus registered, assigned bus number 1
+[    2.066625] usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.18
+[    2.074530] hub 1-0:1.0: USB hub found
+[    2.075995] hub 1-0:1.0: 1 port detected
+[    2.085205] sdhci: Secure Digital Host Controller Interface driver
+[    2.146100] uart-pl011 3f201000.serial: cts_event_workaround enabled
+[    2.148035] 3f201000.serial: ttyAMA1 at MMIO 0x3f201000 (irq = 99, base_baud = 0) is a PL011 rev2
+[    2.162730] mmc-bcm2835 3f300000.mmcnr: mmc_debug:0 mmc_debug2:0
+[    2.164260] mmc-bcm2835 3f300000.mmcnr: DMA channel allocated
+[    2.269610] mmc1: new high speed SDIO card at address 0001
+[    2.272905] Waiting for root device /dev/mmcblk0p2...
+[    2.369485] usb 1-1: new high-speed USB device number 2 using dwc_otg
+[    2.405195] mmc0: new high speed SDXC card at address d555
+[    2.407405] mmcblk0: mmc0:d555 SK128 119 GiB
+[    2.511785] EXT4-fs (mmcblk0p2): mounted filesystem 990a05e4-d62a-49d6-8c1d-91d8dac30c9b rw with ordered data mode. Quota mode: none.
+[    2.513480] VFS: Mounted root (ext4 filesystem) on device 179:2.
+[    2.525680] Run /sbin/init as init process
+[    2.565655] usb 1-1: New USB device found, idVendor=0424, idProduct=2514, bcdDevice= b.b3
+[    2.569485] hub 1-1:1.0: USB hub found
+[    2.571145] hub 1-1:1.0: 4 ports detected
+[    2.849475] usb 1-1.1: new high-speed USB device number 3 using dwc_otg
+[    2.957390] hub 1-1.1:1.0: USB hub found
+[    2.959075] hub 1-1.1:1.0: 3 ports detected
+[    3.033485] usb 1-1.2: new low-speed USB device number 4 using dwc_otg
+[    3.142470] usb 1-1.2: New USB device found, idVendor=0413, idProduct=301a, bcdDevice= 1.00
+[    3.145795] usb 1-1.2: Product: Dell USB Optical Mouse
+[    3.152560] input: Dell USB Optical Mouse as /devices/platform/soc/3f980000.usb/usb1/1-1/1-1.2/1-1.2:1.0/0003:0413:301A.0001/input/input0
+[    3.154645] hid-generic 0003:0413:301A.0001: input,hidraw0: USB HID v1.11 Mouse [Dell USB Optical Mouse] on usb-3f980000.usb-1.2/input0
+[    3.237485] usb 1-1.3: new low-speed USB device number 5 using dwc_otg
+[    3.378230] usb 1-1.3: New USB device found, idVendor=04ca, idProduct=009c, bcdDevice= 2.65
+[    3.381635] usb 1-1.3: Product: USB Keyboard
+[    3.400545] input: Lite-On Technology Corp USB Keyboard as /devices/platform/soc/3f980000.usb/usb1/1-1/1-1.3/1-1.3:1.0/0003:04CA:009C.0002/input/input1
+[    3.757480] usb 1-1.1.1: new high-speed USB device number 6 using dwc_otg
+[    3.861725] usb 1-1.1.1: New USB device found, idVendor=0424, idProduct=7800, bcdDevice= 3.00
+[    4.146915] lan78xx 1-1.1.1:1.0 (unnamed net_device) (uninitialized): int urb period 64
+[    4.240305] lan78xx 1-1.1.1:1.0 (unnamed net_device) (uninitialized): PHY [usb-001:006:01] driver [Microchip LAN88xx] (irq=POLL)
+[   15.135740] lan78xx 1-1.1.1:1.0 eth0: configuring for phy/gmii link mode
+[   18.329895] lan78xx 1-1.1.1:1.0 eth0: Link is Up - 1Gbps/Full - flow control off
+[   18.330105] IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
