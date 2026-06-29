@@ -177,26 +177,64 @@ class IsolationForestModel:
             exist_ok=True
         )
 
+        # joblib.dump(
+
+        #     {
+
+        #         "model": self.model,
+
+        #         "features": self.feature_columns,
+
+        #         "feature_count": len(
+        #             self.feature_columns
+        #         ),
+
+        #         "training_samples": len(
+        #             X
+        #         )
+        #     },
+
+
         joblib.dump(
 
-            {
+        {
 
-                "model": self.model,
+            "model":
 
-                "features": self.feature_columns,
+                self.model,
 
-                "feature_count": len(
+            "features":
+
+                self.feature_columns,
+
+            "feature_count":
+
+                len(
+
                     self.feature_columns
+
                 ),
 
-                "training_samples": len(
-                    X
-                )
+            "training_samples":
 
-            },
+                len(X),
 
-            model_path
-        )
+            "model_type":
+
+                "IsolationForest",
+
+            "model_version":
+
+                "1.0"
+
+        },
+
+        model_path
+
+    )
+
+        #     model_path
+        # )
 
         logger.info(
 
@@ -208,8 +246,17 @@ class IsolationForestModel:
     
     def load_model(
         self,
-        model_path: Path
+        model_path: Path | None = None
     ):
+        
+        if model_path is None:
+
+            model_path = self.get_latest_model(
+
+                Path("models/trained")
+
+            )
+
         saved = joblib.load(
             model_path
         )
@@ -283,6 +330,115 @@ class IsolationForestModel:
         return predictions, scores
 
 
+    def predict_feature_vector(
+        self,
+        feature_vector: dict
+    ):
+        """
+        Predict anomaly for a
+        single feature vector.
+        """
+
+        if self.model is None:
+
+            raise ValueError(
+
+                "Model has not been loaded."
+
+            )
+
+        missing_columns = [
+
+            column
+
+            for column in self.feature_columns
+
+            if column not in feature_vector
+
+        ]
+
+        if missing_columns:
+
+            raise ValueError(
+
+                f"Missing feature columns: "
+
+                f"{missing_columns}"
+
+            )
+
+        dataframe = pd.DataFrame(
+
+            [
+
+                {
+
+                    column: feature_vector[column]
+
+                    for column in self.feature_columns
+
+                }
+
+            ]
+
+        )
+
+        prediction = self.model.predict(
+
+            dataframe
+
+        )[0]
+
+        anomaly_score = self.model.decision_function(
+
+            dataframe
+
+        )[0]
+
+        anomaly_strength = round(
+
+            abs(
+
+                anomaly_score
+
+            ) * 100,
+
+            2
+
+        )
+
+        return {
+
+            "prediction":
+
+                "ANOMALY"
+
+                if prediction == -1
+
+                else "NORMAL",
+
+            "prediction_code":
+
+                int(
+
+                    prediction
+
+                ),
+
+            "anomaly_score":
+
+                float(
+
+                    anomaly_score
+
+                ),
+
+            "anomaly_strength":
+
+                anomaly_strength
+
+        }
+
 
     def get_latest_dataset(
         self,
@@ -319,6 +475,48 @@ class IsolationForestModel:
         )
 
         return latest_dataset
+
+
+
+
+    def get_latest_model(
+        self,
+        model_dir: Path
+    ) -> Path:
+
+        model_files = sorted(
+
+            model_dir.glob(
+
+                "*.pkl"
+
+            ),
+
+            key=lambda file: file.stat().st_mtime,
+
+            reverse=True
+
+        )
+
+        if not model_files:
+
+            raise FileNotFoundError(
+
+                "No trained model found."
+
+            )
+
+        latest_model = model_files[0]
+
+        logger.info(
+
+            f"Using latest model: "
+
+            f"{latest_model.name}"
+
+        )
+
+        return latest_model
     
 
 
