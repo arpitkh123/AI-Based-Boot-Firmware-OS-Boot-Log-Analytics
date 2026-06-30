@@ -251,11 +251,17 @@ class IsolationForestModel:
         
         if model_path is None:
 
+            project_root = Path(__file__).resolve().parents[2]
+
             model_path = self.get_latest_model(
-
-                Path("models/trained")
-
+                project_root / "models" / "trained"
             )
+
+            # model_path = self.get_latest_model(
+
+            #     Path("models/trained")
+
+            # )
 
         saved = joblib.load(
             model_path
