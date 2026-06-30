@@ -1,0 +1,21 @@
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+[    0.000000] Linux version 6.18.21-v8+ (dom@buildbot) (aarch64-linux-gnu-gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #1967 SMP PREEMPT Wed Apr  8 18:17:01 BST 2026
+[    0.000000] Machine model: Raspberry Pi 3 Model B Plus Rev 1.4
+[    0.000000] Reserved memory: created CMA memory pool at 0x0000000037400000, size 64 MiB
+[    0.005119] Detected VIPT I-cache on CPU1
+[    0.006034] Detected VIPT I-cache on CPU2
+[    0.006823] Detected VIPT I-cache on CPU3
+[    0.007191] SMP: Total of 4 processors activated.
+[    0.028135] thermal_sys: Registered thermal governor 'step_wise'
+[    1.524607] dwc_otg 3f980000.usb: DWC OTG Controller
+[    1.865248] mmcblk0: mmc0:d555 SK128 119 GiB
+[    1.930977] EXT4-fs (mmcblk0p2): mounted filesystem 990a05e4-d62a-49d6-8c1d-91d8dac30c9b r/w with ordered data mode.
+[    1.945517] Run /sbin/init as init process
+[   15.421098] thermal thermal_zone0: critical temperature reached (85 C), shutting down
+[   15.421112] reboot: HARDWARE CRITICAL: Thermal trip triggered
+[   15.425102] CPU3: stopping
+[   15.425110] CPU: 3 UID: 0 PID: 0 Comm: swapper/3 Not tainted 6.18.21-v8+ #1967 PREEMPT
+[   15.426201] CPU2: stopping
+[   15.426215] CPU: 2 UID: 0 PID: 0 Comm: swapper/2 Not tainted 6.18.21-v8+ #1967 PREEMPT
+[   15.428504] CPU1: stopping
+[   15.435099] System is powering off due to thermal trip.

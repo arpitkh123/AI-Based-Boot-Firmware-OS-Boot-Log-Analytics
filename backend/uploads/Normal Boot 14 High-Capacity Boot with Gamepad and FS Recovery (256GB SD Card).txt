@@ -1,0 +1,77 @@
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+[    0.000000] Linux version 6.18.21-v8+ (dom@buildbot) (aarch64-linux-gnu-gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #1967 SMP PREEMPT Wed Apr  8 18:17:01 BST 2026
+[    0.000000] KASLR enabled
+[    0.000000] Machine model: Raspberry Pi 3 Model B Plus Rev 1.4
+[    0.000000] efi: UEFI not found.
+[    0.000000] Reserved memory: created CMA memory pool at 0x0000000037400000, size 64 MiB
+[    0.000000] OF: reserved mem: initialized node linux,cma, compatible id shared-dma-pool
+[    0.000000] NUMA: Faking a node at [mem 0x0000000000000000-0x000000003b3fffff]
+[    0.000000] NODE_DATA(0) allocated [mem 0x371fe340-0x372010bf]
+[    0.000000] pcpu-alloc: s95448 r8192 d31528 u135168 alloc=33*4096
+[    0.000000] Detected VIPT I-cache on CPU0
+[    0.000000] CPU features: kernel page table isolation forced ON by KASLR
+[    0.000000] Kernel command line: console=tty1 console=ttyAMA0,115200 root=/dev/mmcblk0p2 rootwait rw
+[    0.000000] printk: log buffer data + meta data: 131072 + 458752 = 589824 bytes
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+[    0.000000] rcu: Preemptible hierarchical RCU implementation.
+[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[    0.000000] arch_timer: cp15 timer running at 19.20MHz (phys).
+[    0.000212] printk: legacy console [tty1] enabled
+[    0.000722] Calibrating delay loop (skipped), value calculated using timer frequency.. 38.40 BogoMIPS (lpj=76800)
+[    0.004618] smp: Bringing up secondary CPUs ...
+[    0.005128] Detected VIPT I-cache on CPU1
+[    0.005278] CPU1: Booted secondary processor 0x0000000001 [0x410fd034]
+[    0.006042] Detected VIPT I-cache on CPU2
+[    0.006152] CPU2: Booted secondary processor 0x0000000002 [0x410fd034]
+[    0.006832] Detected VIPT I-cache on CPU3
+[    0.006938] CPU3: Booted secondary processor 0x0000000003 [0x410fd034]
+[    0.007132] smp: Brought up 1 node, 4 CPUs
+[    0.007198] SMP: Total of 4 processors activated.
+[    0.008562] Memory: 850408K/970752K available (14848K kernel code, 2446K rwdata, 5068K rodata, 5632K init, 505K bss, 49360K reserved, 65536K cma-reserved)
+[    0.021598] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.025832] DMA: preallocated 128 KiB GFP_KERNEL pool for atomic allocations
+[    0.028142] thermal_sys: Registered thermal governor 'step_wise'
+[    0.029208] Serial: AMBA PL011 UART driver
+[    0.036442] raspberrypi-firmware soc:firmware: Attached to firmware from 2026-02-11T18:31:36, variant start
+[    0.040442] raspberrypi-firmware soc:firmware: Firmware hash is ce768004a1c9657e60b33b0cc413d8e07320cb0d
+[    0.050772] SCSI subsystem initialized
+[    0.052792] clocksource: Switched to clocksource arch_sys_counter
+[    0.060012] NET: Registered PF_INET protocol family
+[    0.062372] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    0.067132] kvm [1]: nv: 568 coarse grained trap handlers
+[    1.064168] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+[    1.070528] bcm2708_fb soc:fb: FB found 0 display(s)
+[    1.121728] usbcore: registered new interface driver lan78xx
+[    1.121838] usbcore: registered new interface driver smsc95xx
+[    1.524668] dwc_otg 3f980000.usb: new USB bus registered, assigned bus number 1
+[    1.529272] usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.18
+[    1.536942] hub 1-0:1.0: USB hub found
+[    1.547818] sdhci: Secure Digital Host Controller Interface driver
+[    1.563778] NET: Registered PF_PACKET protocol family
+[    1.610428] 3f201000.serial: ttyAMA1 at MMIO 0x3f201000 (irq = 99, base_baud = 0) is a PL011 rev2
+[    1.621018] bcm2835-wdt bcm2835-wdt: Broadcom BCM2835 watchdog timer
+[    1.731008] Waiting for root device /dev/mmcblk0p2...
+[    1.862978] mmc0: new high speed SDXC card at address d333
+[    1.865248] mmcblk0: mmc0:d333 SD256 238.4 GiB
+[    1.900678] mmcblk0: mmc0:d333 SD256 238.4 GiB (quirks 0x00004000)
+[    1.930978] EXT4-fs (mmcblk0p2): mounted filesystem 990a05e4-d62a-49d6-8c1d-91d8dac30c9b r/w with ordered data mode. Quota mode: none.
+[    1.932678] VFS: Mounted root (ext4 filesystem) on device 179:2.
+[    1.945518] Run /sbin/init as init process
+[    2.025052] usb 1-1: New USB device found, idVendor=0424, idProduct=2514, bcdDevice= b.b3
+[    2.029028] hub 1-1:1.0: USB hub found
+[    2.030808] hub 1-1:1.0: 4 ports detected
+[    2.202938] Boot Successful!
+[    2.312808] usb 1-1.1: new high-speed USB device number 3 using dwc_otg
+[    2.416952] usb 1-1.1: New USB device found, idVendor=0424, idProduct=2514, bcdDevice= b.b3
+[    2.420528] hub 1-1.1:1.0: USB hub found
+[    2.422168] hub 1-1.1:1.0: 3 ports detected
+[    2.716792] usb 1-1.2: new high-speed USB device number 4 using dwc_otg
+[    2.857382] usb 1-1.2: New USB device found, idVendor=0bda, idProduct=8178, bcdDevice= 2.00
+[    2.860788] usb 1-1.2: Product: 802.11n WLAN Adapter
+[    2.862432] usb 1-1.2: Manufacturer: Realtek
+[    3.244798] usb 1-1.1.1: new high-speed USB device number 5 using dwc_otg
+[    3.349018] usb 1-1.1.1: New USB device found, idVendor=0424, idProduct=7800, bcdDevice= 3.00
+[    3.621352] lan78xx 1-1.1.1:1.0 (unnamed net_device) (uninitialized): int urb period 64
+[    3.714788] lan78xx 1-1.1.1:1.0 (unnamed net_device) (uninitialized): PHY [usb-001:005:01] driver [Microchip LAN88xx] (irq=POLL)
+[   10.135718] lan78xx 1-1.1.1:1.0 eth0: configuring for phy/gmii link mode
+[   13.329878] lan78xx 1-1.1.1:1.0 eth0: Link is Up - 1Gbps/Full - flow control off
