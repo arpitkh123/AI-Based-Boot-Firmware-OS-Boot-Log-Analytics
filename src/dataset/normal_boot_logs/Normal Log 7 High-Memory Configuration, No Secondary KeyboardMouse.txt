@@ -1,0 +1,26 @@
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+[    0.000000] Linux version 6.18.21-v8+ (dom@buildbot) (aarch64-linux-gnu-gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #1967 SMP PREEMPT Wed Apr  8 18:17:01 BST 2026
+[    0.000000] KASLR enabled
+[    0.000000] Machine model: Raspberry Pi 3 Model B Plus Rev 1.4
+[    0.000000] Reserved memory: created CMA memory pool at 0x0000000037400000, size 128 MiB
+[    0.000000] Detected VIPT I-cache on CPU0
+[    0.004608] smp: Bringing up secondary CPUs ...
+[    0.007126] smp: Brought up 1 node, 4 CPUs
+[    0.008547] Memory: 917504K/970752K available (14848K kernel code, 2446K rwdata, 5068K rodata, 5632K init, 505K bss, 49360K reserved, 131072K cma-reserved)
+[    0.021589] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.029199] Serial: AMBA PL011 UART driver
+[    0.031643] bcm2835-mbox 3f00b880.mailbox: mailbox enabled
+[    0.052781] clocksource: Switched to clocksource arch_sys_counter
+[    1.084973] Console: switching to colour frame buffer device 228x61
+[    1.524607] dwc_otg 3f980000.usb: DWC OTG Controller
+[    1.524741] dwc_otg 3f980000.usb: irq 74, io mem 0x00000000
+[    1.610432] 3f201000.serial: ttyAMA1 at MMIO 0x3f201000 (irq = 99, base_baud = 0) is a PL011 rev2
+[    1.731005] Waiting for root device /dev/mmcblk0p2...
+[    1.865248] mmcblk0: mmc0:d555 SK128 119 GiB
+[    1.930977] EXT4-fs (mmcblk0p2): mounted filesystem 990a05e4-d62a-49d6-8c1d-91d8dac30c9b r/w with ordered data mode.
+[    1.945517] Run /sbin/init as init process
+[    2.202937] Boot Successful!
+[    3.621358] lan78xx 1-1.1.1:1.0 (unnamed net_device) (uninitialized): int urb period 64
+[    3.714793] lan78xx 1-1.1.1:1.0 (unnamed net_device) (uninitialized): PHY [usb-001:006:01] driver [Microchip LAN88xx] (irq=POLL)
+[   15.135719] lan78xx 1-1.1.1:1.0 eth0: configuring for phy/gmii link mode
+[   18.329871] lan78xx 1-1.1.1:1.0 eth0: Link is Up - 1Gbps/Full - flow control off

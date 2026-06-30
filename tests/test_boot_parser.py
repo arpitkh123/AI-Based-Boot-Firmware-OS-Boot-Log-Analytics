@@ -17,7 +17,13 @@ from src.parsers.boot_parser import BootParser
 # Paths
 # ---------------------------------------------------------------------
 
-DATASET_PATH = Path("src/dataset/error_boot_logs")
+# DATASET_PATH = Path("src/dataset/error_boot_logs")
+DATASET_PATHS = [
+
+    Path("src/dataset/normal_boot_logs"),
+
+    Path("src/dataset/error_boot_logs")
+]
 
 
 # ---------------------------------------------------------------------
@@ -33,11 +39,33 @@ boot_parser = BootParser()
 # Collect Log Files
 # ---------------------------------------------------------------------
 
-log_files = sorted(DATASET_PATH.glob("*.txt"))
+# log_files = sorted(DATASET_PATH.glob("*.txt"))
+
+# if not log_files:
+#     raise FileNotFoundError(
+#         f"No log files found in {DATASET_PATH}"
+#     )
+
+log_files = []
+
+
+
+for folder in DATASET_PATHS:
+
+    if folder.exists():
+
+        log_files.extend(
+
+            sorted(
+                folder.glob("*.txt")
+            )
+
+        )
 
 if not log_files:
+
     raise FileNotFoundError(
-        f"No log files found in {DATASET_PATH}"
+        "No log files found."
     )
 
 
@@ -50,9 +78,17 @@ print("=" * 90)
 # Test Every Log File
 # ---------------------------------------------------------------------
 
+total_files = 0
+
+passed_files = 0
+
+failed_files = 0
+
+
 for index, log_file in enumerate(log_files, start=1):
 
     print(f"\n[{index}/{len(log_files)}]")
+    print(f"Category : {log_file.parent.name}")
     print(f"Testing File : {log_file.name}")
 
     try:
@@ -78,6 +114,12 @@ for index, log_file in enumerate(log_files, start=1):
         result = boot_parser.analyze_boot(
             classified_logs
         )
+
+        total_files += 1
+
+        passed_files += 1
+
+        print("Status : PASS")
 
         print("-" * 70)
 
@@ -163,15 +205,50 @@ for index, log_file in enumerate(log_files, start=1):
 
     except Exception as error:
 
-        print("\nTest Failed")
+        failed_files += 1
+
+        total_files += 1
+
+        print("Status : FAIL")
+
         print(error)
 
-        break
+        continue
+
+        # print("\nTest Failed")
+        # print(error)
+
+        # break
 
 
-print("\n" + "=" * 90)
-print("Boot Parser Test Completed Successfully")
-print("=" * 90)
+# print("\n" + "=" * 90)
+# print("Boot Parser Test Completed Successfully")
+# print("=" * 90)
+
+print("\n" + "=" * 70)
+
+print("BOOT PARSER SUMMARY")
+
+print("=" * 70)
+
+print(
+    f"Files Tested : {total_files}"
+)
+
+print(
+    f"Files Passed : {passed_files}"
+)
+
+print(
+    f"Files Failed : {failed_files}"
+)
+
+print("=" * 70)
+
+print(
+    "\nBoot Parser Test "
+    "Completed Successfully"
+)
 
 
 

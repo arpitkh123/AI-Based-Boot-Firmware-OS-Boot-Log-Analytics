@@ -1,0 +1,20 @@
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+[    0.000000] Linux version 6.18.21-v8+ (dom@buildbot) (aarch64-linux-gnu-gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #1967 SMP PREEMPT Wed Apr  8 18:17:01 BST 2026
+[    0.000000] KASLR enabled
+[    0.000000] Machine model: Raspberry Pi 3 Model B Plus Rev 1.4
+[    0.000000] Reserved memory: created CMA memory pool at 0x0000000037400000, size 64 MiB
+[    0.007191] SMP: Total of 4 processors activated.
+[    0.008547] Memory: 850408K/970752K available
+[    0.021589] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    1.524607] dwc_otg 3f980000.usb: DWC OTG Controller
+[    1.731005] Waiting for root device /dev/mmcblk0p2...
+[    1.865248] mmcblk0: mmc0:d555 SK128 119 GiB
+[    1.930977] EXT4-fs (mmcblk0p2): mounted filesystem 990a05e4-d62a-49d6-8c1d-91d8dac30c9b r/w with ordered data mode.
+[    1.932676] VFS: Mounted root (ext4 filesystem) on device 179:2.
+[    2.000000] EXT4-fs (sda1): mounted filesystem 7a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d r/w with ordered data mode.
+[    2.000500] VFS: Mounted /dev/sda1 on /mnt/data
+[    2.202937] Boot Successful!
+[    3.621358] lan78xx 1-1.1.1:1.0 (unnamed net_device) (uninitialized): int urb period 64
+[    3.714793] lan78xx 1-1.1.1:1.0 (unnamed net_device) (uninitialized): PHY [usb-001:006:01] driver [Microchip LAN88xx] (irq=POLL)
+[   15.135719] lan78xx 1-1.1.1:1.0 eth0: configuring for phy/gmii link mode
+[   18.329871] lan78xx 1-1.1.1:1.0 eth0: Link is Up - 1Gbps/Full - flow control off

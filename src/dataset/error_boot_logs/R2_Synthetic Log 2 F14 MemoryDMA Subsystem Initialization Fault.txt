@@ -1,0 +1,33 @@
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+[    0.000000] Linux version 6.18.21-v8+ (dom@buildbot) (aarch64-linux-gnu-gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #1967 SMP PREEMPT Wed Apr  8 18:17:01 BST 2026
+[    0.000000] KASLR enabled
+[    0.000000] Machine model: Raspberry Pi 3 Model B Plus Rev 1.4
+[    0.000000] efi: UEFI not found.
+[    0.000000] Reserved memory: failed to reserve memory for node 'linux,cma'
+[    0.000000] cma: cma_declare_contiguous_nommu() failed
+[    0.000000] cma_alloc: linux,cma: alloc failed
+[    0.000000] NUMA: Faking a node at [mem 0x0000000000000000-0x000000003b3fffff]
+[    0.000000] pcpu-alloc: s95448 r8192 d31528 u135168 alloc=33*4096
+[    0.000000] Detected VIPT I-cache on CPU0
+[    0.004608] smp: Bringing up secondary CPUs ...
+[    0.007126] smp: Brought up 1 node, 4 CPUs
+[    0.007191] SMP: Total of 4 processors activated.
+[    0.021589] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.025823] DMA: preallocated 128 KiB GFP_KERNEL pool for atomic allocations
+[    0.029199] Serial: AMBA PL011 UART driver
+[    0.031643] bcm2835-mbox 3f00b880.mailbox: mailbox enabled
+[    0.040430] raspberrypi-firmware soc:firmware: Firmware hash is ce768004a1c9657e60b33b0cc413d8e07320cb0d
+[    1.065110] io scheduler mq-deadline registered
+[    1.084973] Console: switching to colour frame buffer device 228x61
+[    1.090479] bcm2708_fb soc:fb: failed to allocate framebuffer (no display registered)
+[    1.104318] bcm2835-rng 3f104000.rng: hwrng registration failed -ENOMEM
+[    1.105000] Kernel panic - not syncing: Out of memory during early subsystem init
+[    1.105008] CPU: 0 UID: 0 PID: 1 Comm: swapper/0 Not tainted 6.18.21-v8+ #1967 PREEMPT
+[    1.105014] Hardware name: Raspberry Pi 3 Model B Plus Rev 1.4 (DT)
+[    1.105020] Call trace:
+[    1.105026]  dump_stack_lvl+0x38/0x90
+[    1.105032]  panic+0x68/0x70
+[    1.105038]  bcm2835_rng_probe+0x104/0x1c0
+[    1.105044]  platform_probe+0x6c/0xd8
+[    1.106000] SMP: stopping secondary CPUs
+[    1.107000] ---[ end Kernel panic - not syncing: Out of memory during early subsystem init ]---

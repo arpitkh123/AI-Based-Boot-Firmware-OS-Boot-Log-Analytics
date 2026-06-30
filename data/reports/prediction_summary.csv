@@ -1,0 +1,5 @@
+Metric,Value
+predicted_anomalies,13.0
+predicted_inliers,29.0
+average_anomaly_score,0.0138
+highest_anomaly_strength,17.54

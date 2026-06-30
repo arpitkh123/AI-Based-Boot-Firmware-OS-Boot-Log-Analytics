@@ -1,0 +1,6 @@
+file_name,label,anomaly_prediction,anomaly_score,anomaly_strength
+Normal Boot 15  Headless Boot with External WLAN Adapter (128GB SD Card).txt,normal,1,0.10595735514982701,10.6
+Normal Boot 13 with Gaming Peripherals (16GB SD Card).txt,normal,1,0.09968954148512177,9.97
+Normal Boot 14 High-Capacity Boot with Gamepad and FS Recovery (256GB SD Card).txt,normal,1,0.09621860896220819,9.62
+Normal Log 6 Ext4 Filesystem Recovery and RazerMicrosoft Peripherals.txt,normal,1,0.09085944138453894,9.09
+"Normal Log 5 64GB SD Card, Headless Boot (No Input Devices), Delayed Network.txt",normal,1,0.0906423765391311,9.06
