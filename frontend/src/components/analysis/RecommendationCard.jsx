@@ -1,139 +1,93 @@
-function RecommendationCard({ recommendation }) {
+import {
+  AlertTriangle,
+  Info,
+  Wrench,
+  Brain,
+} from "lucide-react";
+import { Marked } from "marked";
+import { useEffect, useState } from "react";
+
+// Instantiating marked parser
+const marked = new Marked();
+
+/**
+ * A single section within the AI explanation panel.
+ * accent controls the left-border color and icon color.
+ * Uses marked to parse markdown content safely.
+ */
+function ExplanationSection({ icon: Icon, label, accentClass, text }) {
+  const [htmlContent, setHtmlContent] = useState("");
+
+  useEffect(() => {
+    if (text) {
+      // Parse markdown to HTML
+      const rawHtml = marked.parse(text);
+      setHtmlContent(rawHtml);
+    }
+  }, [text]);
+
   return (
-    <div className="card bg-base-100 shadow">
+    <div className={`flex gap-4 p-4 rounded-lg border-l-4 bg-base-200 ${accentClass}`}>
+      <Icon size={18} className="shrink-0 mt-1 opacity-70" />
+      <div className="space-y-1 min-w-0 flex-1">
+        <p className="text-xs font-mono uppercase tracking-widest text-base-content/40 mb-2">
+          {label}
+        </p>
+        <div 
+          className="text-sm text-base-content leading-relaxed markdown-body prose prose-sm max-w-none text-justify"
+          dangerouslySetInnerHTML={{ __html: htmlContent }}
+        />
+      </div>
+    </div>
+  );
+}
 
-      <div className="card-body">
+function RecommendationCard({ recommendation, bootStatus }) {
+  const rootCauseAccent = bootStatus
+    ? "border-info"
+    : "border-error";
 
-        <h2 className="card-title">
-          AI Recommendation
-        </h2>
+  const rootCauseIcon = bootStatus ? Info : AlertTriangle;
 
-        <div className="alert alert-error">
+  return (
+    <div className="card bg-base-100 shadow mb-6">
+      <div className="card-body gap-4">
 
-          <div>
-
-            <h3 className="font-bold">
-              Root Cause
-            </h3>
-
-            <p>
-              {recommendation.rootCause}
-            </p>
-
-          </div>
-
+        {/* Header */}
+        <div className="flex items-center gap-2 mb-1">
+          <Brain size={18} className="text-primary" />
+          <h2 className="card-title text-base">
+            AI Technical Explanation
+          </h2>
         </div>
 
-        <div className="alert alert-info mt-4">
+        {/* Root Cause — color depends on boot outcome */}
+        <ExplanationSection
+          icon={rootCauseIcon}
+          label="Root Cause"
+          accentClass={rootCauseAccent}
+          text={recommendation.rootCause}
+        />
 
-          <div>
+        {/* Reason — always neutral/informational */}
+        <ExplanationSection
+          icon={Info}
+          label="Analysis"
+          accentClass="border-warning"
+          text={recommendation.reason}
+        />
 
-            <h3 className="font-bold">
-              Reason
-            </h3>
-
-            <p>
-              {recommendation.reason}
-            </p>
-
-          </div>
-
-        </div>
-
-        <div className="alert alert-success mt-4">
-
-          <div>
-
-            <h3 className="font-bold">
-              Suggested Resolution
-            </h3>
-
-            <p>
-              {recommendation.solution}
-            </p>
-
-          </div>
-
-        </div>
+        {/* Solution — always positive/actionable */}
+        <ExplanationSection
+          icon={Wrench}
+          label="Suggested Resolution"
+          accentClass="border-success"
+          text={recommendation.solution}
+        />
 
       </div>
-
     </div>
   );
 }
 
 export default RecommendationCard;
-
-
-
-
-// function RecommendationCard({ recommendation }) {
-//   return (
-//     <div className="card bg-base-100 shadow mb-6">
-
-//       <div className="card-body">
-
-//         <h2 className="card-title">
-//           AI Recommendation
-//         </h2>
-
-//         <div className="divider"></div>
-
-//         <h3 className="font-bold">
-//           Root Cause
-//         </h3>
-
-//         <p>
-//           {recommendation.rootCause}
-//         </p>
-
-//         <h3 className="font-bold mt-4">
-//           Reason
-//         </h3>
-
-//         <p>
-//           {recommendation.reason}
-//         </p>
-
-//         <h3 className="font-bold mt-4">
-//           Suggested Resolution
-//         </h3>
-
-//         <p>
-//           {recommendation.solution}
-//         </p>
-
-//       </div>
-
-//     </div>
-//   );
-// }
-
-// export default RecommendationCard;
-
-
-
-
-
-// function RecommendationCard({ recommendation }) {
-//   return (
-//     <div
-//       style={{
-//         border: "1px solid #ddd",
-//         padding: "20px",
-//         borderRadius: "10px",
-//         marginBottom: "20px",
-//       }}
-//     >
-//       <h2>Recommendation</h2>
-
-//       <p><strong>Root Cause:</strong> {recommendation.rootCause}</p>
-
-//       <p><strong>Reason:</strong> {recommendation.reason}</p>
-
-//       <p><strong>Solution:</strong> {recommendation.solution}</p>
-//     </div>
-//   );
-// }
-
-// export default RecommendationCard;

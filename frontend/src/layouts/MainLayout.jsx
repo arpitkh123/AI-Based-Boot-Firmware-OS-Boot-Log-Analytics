@@ -3,17 +3,12 @@ import Navbar from "../components/layout/Navbar";
 
 function MainLayout() {
   return (
-    <>
+    <div className="min-h-screen bg-base-200 flex flex-col">
       <Navbar />
-
-      <main
-        style={{
-          padding: "24px",
-        }}
-      >
+      <main className="flex-1 p-6">
         <Outlet />
       </main>
-    </>
+    </div>
   );
 }
 
