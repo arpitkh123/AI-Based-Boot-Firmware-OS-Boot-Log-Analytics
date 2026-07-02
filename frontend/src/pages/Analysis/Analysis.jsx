@@ -9,7 +9,10 @@ import PredictionCard from "../../components/analysis/PredictionCard";
 import BootSummaryCard from "../../components/analysis/BootSummaryCard";
 import ProcessingInfoCard from "../../components/analysis/ProcessingInfoCard";
 import StatisticsCard from "../../components/analysis/StatisticsCard";
+import SubsystemDistribution from "../../components/analysis/SubsystemDistribution";
+import BootParserConsole from "../../components/analysis/BootParserConsole";
 import RecommendationCard from "../../components/analysis/RecommendationCard";
+import LogTimelineInspector from "../../components/analysis/LogTimelineInspector";
 import ReportActions from "../../components/analysis/ReportActions";
 
 function Analysis() {
@@ -49,7 +52,20 @@ function Analysis() {
         <div className="max-w-7xl mx-auto">
           <ReportHeader
             analysisId={analysis.analysisId}
+            file={{
+              name: analysis.details?.filename,
+              sizeBytes: analysis.details?.fileSizeBytes,
+              uploadedAt: analysis.metadata?.timestamp || new Date().toISOString()
+            }}
             processing={analysis.processing}
+            prediction={{
+              severity: analysis.prediction?.severity || "INFO"
+            }}
+            environment={{
+              machineModel: analysis.details?.machineModel,
+              linuxVersion: analysis.details?.linuxVersion,
+              bootType: analysis.details?.bootSource
+            }}
           />
 
           <PredictionCard
@@ -58,20 +74,30 @@ function Analysis() {
           />
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-            <BootSummaryCard boot={analysis.boot} />
+            <BootSummaryCard boot={analysis.boot} details={analysis.details} />
             <ProcessingInfoCard
               processing={analysis.processing}
               statistics={analysis.statistics}
               analysisId={analysis.analysisId}
+              details={analysis.details}
             />
           </div>
 
           <StatisticsCard statistics={analysis.statistics} />
 
+          <BootParserConsole boot={analysis.boot} />
+
+          <SubsystemDistribution
+            severitySummary={analysis.severitySummary}
+            subsystemSummary={analysis.subsystemSummary}
+          />
+
           <RecommendationCard
             recommendation={analysis.recommendation}
             bootStatus={analysis.boot.bootSuccessful}
           />
+
+          <LogTimelineInspector timeline={analysis.timeline} />
 
           <ReportActions analysis={analysis} />
         </div>
