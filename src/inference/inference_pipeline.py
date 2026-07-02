@@ -24,6 +24,9 @@ from src.inference.llm_explainer import (
     LLMExplainer
 )
 
+from src.rules.rule_engine import RuleEngine
+from src.fusion.confidence_fusion import ConfidenceFusion
+
 
 logger = logging.getLogger(__name__)
 
@@ -69,6 +72,9 @@ class InferencePipeline:
         self.llm = (
             LLMExplainer()
         )
+
+        self.rule_engine = RuleEngine()
+        self.fusion_engine = ConfidenceFusion()
 
         logger.info(
             "Inference Pipeline Initialized Successfully."
@@ -135,6 +141,18 @@ class InferencePipeline:
 
             )
 
+            uart_statistics = (
+                self.uart_parser.get_basic_statistics(
+                    parsed_logs
+                )
+            )
+
+            kernel_statistics = (
+                self.kernel_parser.get_statistics(
+                    classified_logs
+                )
+            )
+
             logger.info(
 
                 "Kernel Parser Completed."
@@ -173,6 +191,12 @@ class InferencePipeline:
 
                 )
 
+            )
+
+            template_statistics = (
+                self.template_extractor.get_template_statistics(
+                    templates
+                )
             )
 
             logger.info(
@@ -218,44 +242,56 @@ class InferencePipeline:
             # --------------------------------------------------
 
             anomaly_result = (
-
                 self.detector.predict_feature_vector(
-
                     feature_vector
-
                 )
-
             )
 
             logger.info(
-
                 "Isolation Forest Prediction Completed."
+            )
 
+            # --------------------------------------------------
+            # Step 6.5 : Rule Engine & Confidence Fusion
+            # --------------------------------------------------
+            
+            rule_anomalies = self.rule_engine.evaluate(classified_logs, boot_analysis)
+            
+            fusion_result = self.fusion_engine.calculate_confidence(
+                rule_anomalies=rule_anomalies,
+                ml_anomaly=anomaly_result,
+                boot_analysis=boot_analysis,
+                template_stats=template_statistics
+            )
+
+            logger.info(
+                f"Confidence Fusion Completed. Score: {fusion_result['anomaly_strength']}%"
             )
 
             # --------------------------------------------------
             # Step 7 : LLM Explanation
             # --------------------------------------------------
-
-            report = (
-
-                self.llm.explain(
-
-                    file_name=log_file.name,
-
-                    boot_analysis=boot_analysis,
-
-                    anomaly_result=anomaly_result
-
+            
+            kb_matches = [a for a in rule_anomalies if "kb_resolution" in a]
+            if kb_matches:
+                resolution_text = "\n".join([f"- {a['reason']}: {a['kb_resolution']}" for a in kb_matches])
+                report = {
+                    "metadata": {"processing_time_seconds": 0.0},
+                    "llm_explanation": f"**Known Failure Detected (Bypassed AI)**\n{resolution_text}"
+                }
+                logger.info("LLM Explainer bypassed due to high-confidence Knowledge Base match.")
+            else:
+                report = (
+                    self.llm.explain(
+                        file_name=log_file.name,
+                        boot_analysis=boot_analysis,
+                        anomaly_result=fusion_result
+                    )
                 )
 
-            )
-
-            logger.info(
-
-                "LLM Explanation Generated."
-
-            )
+                logger.info(
+                    "LLM Explanation Generated."
+                )
 
 
             logger.info(
@@ -264,29 +300,65 @@ class InferencePipeline:
 
             )
 
+
+
             return {
 
                 "metadata":
-
                     report["metadata"],
 
-                "boot_analysis":
+                "uart_statistics":
+                    uart_statistics,
 
+                "kernel_statistics":
+                    kernel_statistics,
+
+                "boot_analysis":
                     boot_analysis,
 
-                "feature_vector":
+                "template_statistics":
+                    template_statistics,
 
+                "templates":
+                    templates,
+
+                "feature_vector":
                     feature_vector,
 
                 "anomaly_result":
-
-                    anomaly_result,
+                    fusion_result,
 
                 "llm_explanation":
-
                     report["llm_explanation"]
-
             }
+
+
+
+
+
+            # return {
+
+            #     "metadata":
+
+            #         report["metadata"],
+
+            #     "boot_analysis":
+
+            #         boot_analysis,
+
+            #     "feature_vector":
+
+            #         feature_vector,
+
+            #     "anomaly_result":
+
+            #         anomaly_result,
+
+            #     "llm_explanation":
+
+            #         report["llm_explanation"]
+
+            # }
         
         except Exception as error:
 
