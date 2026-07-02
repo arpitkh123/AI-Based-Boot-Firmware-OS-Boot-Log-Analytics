@@ -1,0 +1,154 @@
+{
+  "patterns": [
+    {
+      "match": "unable to register 8250 port",
+      "type": "UART Pin Control Failure",
+      "resolution": "Fix bootargs: remove space in 'ttyS0, 115200' -> 'ttyS0,115200'. Ensure enable_uart=1 in /boot/config.txt and correct pinctrl state in device tree.",
+      "confidence": "HIGH"
+    },
+    {
+      "match": "unknown kernel command line parameters",
+      "type": "Invalid Kernel Boot Arguments",
+      "resolution": "Check bootargs for typos or misplaced spaces. Common mistake: 'console=ttyS0, 115200' should be 'console=ttyS0,115200' (no space after comma).",
+      "confidence": "HIGH"
+    },
+    {
+      "match": "card did not respond to voltage select",
+      "type": "SD Card Hardware/Power Failure",
+      "resolution": "1) Reseat the SD card. 2) Try a different SD card. 3) Check power supply (must be 5V/2.5A minimum for RPi 3B+). 4) Check for oxidized contacts.",
+      "confidence": "HIGH"
+    },
+    {
+      "match": "kernel panic - not syncing",
+      "type": "Kernel Panic",
+      "resolution": "The kernel encountered an unrecoverable error. Check the lines above for the root cause (NULL deref, OOM, init killed). If 'VFS: Unable to mount root fs', verify root= in bootargs points to correct partition.",
+      "confidence": "HIGH"
+    },
+    {
+      "match": "null pointer dereference",
+      "type": "NULL Pointer Dereference",
+      "resolution": "A kernel driver accessed invalid memory. Check the Call Trace for the faulting module. If it's a third-party driver, try updating the kernel. If in a core module, file a bug report.",
+      "confidence": "HIGH"
+    },
+    {
+      "match": "out of memory: kill process",
+      "type": "OOM Kill Event",
+      "resolution": "System ran out of RAM. 1) Reduce running services. 2) Add swap space: 'sudo dphys-swapfile setup && sudo dphys-swapfile swapon'. 3) Check for memory leaks in applications.",
+      "confidence": "HIGH"
+    },
+    {
+      "match": "kernel bug at",
+      "type": "Kernel BUG Assertion",
+      "resolution": "A kernel assertion failed. Check the file:line reference (e.g., net/core/skbuff.c:102). Update to the latest kernel with 'sudo rpi-update'. If persistent, report to raspberrypi/linux.",
+      "confidence": "HIGH"
+    },
+    {
+      "match": "rcu.*self-detected stall",
+      "type": "RCU CPU Stall",
+      "resolution": "A CPU got stuck in a long-running kernel operation. Often caused by: 1) SD card I/O delays. 2) Buggy kernel module. 3) Hardware overheating. Check 'vcgencmd measure_temp'.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "match": "ext4.*error",
+      "type": "Filesystem Corruption",
+      "resolution": "The ext4 filesystem detected errors. 1) Run 'fsck.ext4 -f /dev/mmcblk0p2' from another system. 2) Check SD card health with 'badblocks'. 3) Replace SD card if errors persist.",
+      "confidence": "HIGH"
+    },
+    {
+      "match": "i/o error.*dev mmcblk",
+      "type": "SD Card I/O Error",
+      "resolution": "Physical read/write failure on SD card. 1) Backup data immediately. 2) Re-image the SD card. 3) Use a high-quality A2-rated card. 4) Check power supply stability.",
+      "confidence": "HIGH"
+    },
+    {
+      "match": "timeout waiting for hardware interrupt",
+      "type": "MMC Hardware Timeout",
+      "resolution": "The SD host controller timed out. 1) Try a slower SD card clock: add 'dtparam=sd_overclock=25' in /boot/config.txt. 2) Check for loose SD card connection.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "match": "vfs.*cannot open root device",
+      "type": "Root Filesystem Mount Failure",
+      "resolution": "Kernel cannot find the root partition. 1) Verify 'root=/dev/mmcblk0p2' in bootargs. 2) Check partition table with fdisk. 3) Ensure the filesystem is not corrupted.",
+      "confidence": "HIGH"
+    },
+    {
+      "match": "attempted to kill init",
+      "type": "Init Process Crash",
+      "resolution": "The init system (PID 1) crashed. 1) Boot into recovery: add 'init=/bin/sh' to bootargs. 2) Check /sbin/init exists and is executable. 3) Re-install systemd: 'apt install --reinstall systemd'.",
+      "confidence": "HIGH"
+    },
+    {
+      "match": "phy_startup failed",
+      "type": "Network PHY Failure",
+      "resolution": "Ethernet PHY did not initialize. 1) Check if Ethernet cable is plugged in. 2) For USB Ethernet (RPi 3B+), ensure USB hub enumerates. 3) Try 'dtoverlay=lan78xx' in config.txt.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "match": "boot failed.*err=-14",
+      "type": "EFI Boot Manager Failure",
+      "resolution": "U-Boot's EFI boot manager failed. 1) Set manual boot: 'setenv bootcmd \"fatload mmc 0:1 ${kernel_addr_r} kernel8.img; booti ...\"'. 2) Ensure kernel8.img exists on SD card.",
+      "confidence": "HIGH"
+    },
+    {
+      "match": "fdt and atags support not compiled in",
+      "type": "Missing Device Tree Support",
+      "resolution": "The kernel was booted without a device tree blob. Pass the DTB: 'fatload mmc 0:1 ${fdt_addr_r} bcm2710-rpi-3-b-plus.dtb' before calling booti.",
+      "confidence": "HIGH"
+    },
+    {
+      "match": "unable to read.*uboot.env",
+      "type": "Missing U-Boot Environment",
+      "resolution": "U-Boot cannot find its saved environment file. Run 'saveenv' in U-Boot console to create it. This is normal on first boot with a new SD card.",
+      "confidence": "LOW"
+    },
+    {
+      "match": "usb.*device descriptor read.*error",
+      "type": "USB Device Enumeration Error",
+      "resolution": "A USB device failed to enumerate. 1) Unplug and replug the device. 2) Try a powered USB hub. 3) Check power supply. 4) Add 'max_usb_current=1' to config.txt.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "match": "segfault",
+      "type": "Segmentation Fault",
+      "resolution": "A userspace process crashed. Check the process name and address. 1) Reinstall the affected package. 2) Check for SD card corruption. 3) Test RAM with memtester.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "match": "kernel.*sp=.*vc=.*tp=.*th=",
+      "type": "Thermal Throttling",
+      "resolution": "CPU is overheating and throttling. 1) Add a heatsink and fan. 2) Reduce CPU load. 3) Check ambient temperature. 4) Set 'arm_freq=1200' in config.txt to reduce heat.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "match": "no bootable image found|cannot load any image",
+      "type": "No Bootable Image",
+      "resolution": "U-Boot cannot find a bootable kernel image. 1) Check SD card has kernel8.img (RPi 4) or kernel7.img (RPi 3). 2) Verify FAT partition is intact: 'fsck.vfat /dev/mmcblk0p1'. 3) Re-flash the SD card with Raspberry Pi Imager.",
+      "confidence": "HIGH"
+    },
+    {
+      "match": "bootargs.*not defined|bootargs not defined",
+      "type": "Missing Boot Arguments",
+      "resolution": "Kernel bootargs are not set. In U-Boot console: 'setenv bootargs \"console=ttyS0,115200 root=/dev/mmcblk0p2 rootwait rw\"' then 'saveenv'. Or add them to boot.scr / extlinux.conf.",
+      "confidence": "HIGH"
+    },
+    {
+      "match": "resetting \\.\\.\\.",
+      "type": "System Reset / Watchdog",
+      "resolution": "The system triggered a full reset. This usually means a fatal error in U-Boot. Check the lines above for the root cause (missing FDT, bootargs, or kernel image).",
+      "confidence": "HIGH"
+    },
+    {
+      "match": "bootp broadcast.*retry",
+      "type": "Network Boot Failure",
+      "resolution": "Network boot (PXE/BOOTP) was attempted but no DHCP server responded. If not using network boot, set 'setenv boot_targets mmc0' in U-Boot to skip network boot.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "match": "high manual intervention|backspaces",
+      "type": "Manual Console Intervention",
+      "resolution": "Excessive backspace characters detected in the U-Boot console, indicating manual typing. This suggests the operator was debugging interactively. Check if bootcmd is set correctly for autonomous boot.",
+      "confidence": "LOW"
+    }
+  ]
+}
