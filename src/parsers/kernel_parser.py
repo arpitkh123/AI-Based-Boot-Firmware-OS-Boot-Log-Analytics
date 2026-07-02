@@ -189,3 +189,45 @@ class KernelParser:
             )
 
             raise
+
+
+
+    def get_statistics(
+        self,
+        classified_logs: List[Dict]
+    ) -> Dict:
+
+        severity = {}
+
+        subsystem = {}
+
+        errors = []
+
+        warnings = []
+
+        for log in classified_logs:
+
+            sev = log.get("severity", "INFO")
+
+            sub = log.get("subsystem", "UNKNOWN")
+
+            severity[sev] = severity.get(sev, 0) + 1
+
+            subsystem[sub] = subsystem.get(sub, 0) + 1
+
+            if sev == "ERROR":
+                errors.append(log)
+
+            elif sev == "WARNING":
+                warnings.append(log)
+
+        return {
+
+            "severity": severity,
+
+            "subsystem": subsystem,
+
+            "errors": errors,
+
+            "warnings": warnings,
+        }
