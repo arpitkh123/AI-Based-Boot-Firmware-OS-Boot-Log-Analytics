@@ -24,15 +24,24 @@ This project builds an **AI-based boot log analytics system** that ingests logs 
 ## Hardware Requirements
 
 **Target device under test:** Raspberry Pi 3B+
+The Raspberry Pi 3B+ was selected due to its accessible UART interface, customizable boot process, and strong support for embedded Linux development.
 
 | Component | Purpose |
 |---|---|
 | Raspberry Pi 3B+ | Embedded target whose boot logs are captured and analyzed |
 | microSD card (32 GB+) | Hosts the Pi's bootloader and OS |
 | 5V / 2.5A USB power supply | Stable power for repeated boot cycles |
-| USB-to-TTL Serial (UART) cable | Captures firmware/bootloader logs over GPIO pins 8 & 10 from the earliest point of boot, before the network is available |
+| USB-to-TTL Serial (UART) cable | Captures firmware, U-boot, kernel, and boot logs over GPIO pins 8 & 10, before the network is available |
 | HDMI monitor | Display output for direct interaction with the Raspberry Pi |
 | Keyboard + Mouse | For direct input and interaction with the Raspberry Pi |
+
+### UART Connections
+
+| Raspberry Pi Pin | UART Adapter|
+|------------------|-------------|
+| GPIO14 (TX)      | RX          |
+| GPIO15 (RX)      | TX          |
+| GND              | GND         |
 
 ## Tech Stack
 
