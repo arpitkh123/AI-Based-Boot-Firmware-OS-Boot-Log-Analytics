@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: corporate --default;
+  themes: business --default;
 }
 
 html,
@@ -14,120 +14,157 @@ body,
 
 body {
   font-family: Inter, sans-serif;
-  background-color: #f8fafc;
 }
 
+/* Custom markdown rendering overrides to match layout styles */
+.markdown-body p {
+  margin-bottom: 0.85rem;
+  text-align: justify;
+  line-height: 1.6;
+}
+.markdown-body p:last-child {
+  margin-bottom: 0;
+}
+.markdown-body strong {
+  color: var(--color-neutral-content, #ffffff);
+  font-weight: 700;
+}
+.markdown-body ul, .markdown-body ol {
+  margin-left: 1.5rem;
+  margin-bottom: 0.85rem;
+  list-style-type: disc;
+}
+.markdown-body li {
+  margin-bottom: 0.35rem;
+  line-height: 1.5;
+}
+.markdown-body code {
+  font-family: monospace;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.25rem;
+  font-size: 0.85em;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
 
-
-
-/* :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
+/* Print layout optimizations */
+@media print {
+  /* Reset general page parameters */
+  @page {
+    margin: 1.2cm 1.5cm;
+    size: A4 portrait;
   }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt !important;
   }
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
+  .min-h-screen {
+    min-height: auto !important;
   }
-}
 
-body {
-  margin: 0;
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
-
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+  .p-8, .p-6, .p-4 {
+    padding: 0 !important;
   }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
+
+  .my-6, .mb-6, .py-6 {
+    margin-top: 0.8rem !important;
+    margin-bottom: 0.8rem !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
-}
-p {
-  margin: 0;
-}
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
+  /* Exclude tool-specific widgets from PDF output */
+  .no-print, 
+  .navbar, 
+  .btn,
+  #new-analysis-btn,
+  #download-pdf-btn,
+  #download-json-btn,
+  header, 
+  footer, 
+  nav {
+    display: none !important;
+  }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
-} */
+  /* Clean print rules for cards */
+  .card {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+    margin-bottom: 1.2rem !important;
+  }
+
+  .card-body {
+    padding: 1.2rem !important;
+  }
+
+  .bg-base-200, .bg-base-100, .bg-base-300 {
+    background: #ffffff !important;
+  }
+
+  .text-base-content {
+    color: #000000 !important;
+  }
+
+  .text-base-content\/40, .text-base-content\/50, .text-base-content\/60, .text-base-content\/70 {
+    color: #4a5568 !important;
+  }
+
+  .border-base-300, .divide-base-300 {
+    border-color: #cbd5e1 !important;
+  }
+
+  /* Stat indicators columns printing layout */
+  .stats {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    border: 1px solid #e2e8f0 !important;
+    background: #ffffff !important;
+  }
+
+  .stat {
+    flex: 1 1 0% !important;
+    border-right: 1px solid #e2e8f0 !important;
+    border-bottom: 0 !important;
+    padding: 0.8rem !important;
+  }
+
+  .stat:last-child {
+    border-right: 0 !important;
+  }
+
+  /* Radial progress fallback print layout */
+  .radial-progress {
+    color: #1a202c !important;
+    border: 2px solid #cbd5e1 !important;
+    border-radius: 50% !important;
+    background: transparent !important;
+  }
+
+  .radial-progress::after {
+    border-color: #cbd5e1 !important;
+  }
+
+  /* Markdown prose color modifications for paper print formats */
+  .markdown-body strong {
+    color: #000000 !important;
+  }
+  
+  .markdown-body code {
+    background-color: #f1f5f9 !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+  }
+
+  /* Force color rules on high contrast prints */
+  .text-primary { color: #1e3a8a !important; }
+  .text-success { color: #15803d !important; }
+  .text-warning { color: #b45309 !important; }
+  .text-error { color: #b91c1c !important; }
+}

@@ -1,4 +1,5 @@
 import json
+import time
 
 from typing import Dict
 
@@ -34,6 +35,7 @@ class PromptBuilder:
             Complete prompt ready for
             the LLM.
         """
+        current_date_str = time.strftime("%B %d, %Y")
 
         prompt = f"""
 You are an expert Embedded Linux Boot Engineer with extensive experience in Linux kernel boot, U-Boot, device drivers, memory management, root filesystem mounting, embedded hardware debugging, and boot failure analysis.
@@ -45,6 +47,8 @@ The anomaly has already been detected by a Machine Learning model.
 Your responsibility is NOT to classify the boot.
 
 Instead, explain WHY the anomaly occurred using the available evidence.
+
+Today's Date: {current_date_str}
 
 ==============================
 BOOT ANALYSIS
@@ -98,6 +102,8 @@ Important Rules:
 - Use only the supplied structured data.
 
 - If information is insufficient, explicitly mention it.
+
+- Use Today's Date ({current_date_str}) if outputting any report date headers. Do NOT hardcode historical dates.
 
 Return the response in a professional technical report format.
 """

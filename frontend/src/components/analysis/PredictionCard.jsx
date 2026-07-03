@@ -1,170 +1,111 @@
+import { ShieldCheck, ShieldAlert, ShieldQuestion } from "lucide-react";
+
+const CONFIDENCE_HIGH = 80;
+
+/**
+ * Returns Tailwind color class and status metadata based on boot outcome + confidence.
+ * Used for both the radial-progress ring and the status icon.
+ */
+function getStatusMeta(bootStatus, confidence) {
+  if (bootStatus && confidence >= CONFIDENCE_HIGH) {
+    return {
+      ringColor: "text-success",
+      iconColor: "text-success",
+      Icon: ShieldCheck,
+      label: "BOOT SUCCESSFUL",
+      badgeClass: "badge-success",
+    };
+  }
+
+  if (!bootStatus && confidence >= CONFIDENCE_HIGH) {
+    return {
+      ringColor: "text-error",
+      iconColor: "text-error",
+      Icon: ShieldAlert,
+      label: "BOOT FAILED",
+      badgeClass: "badge-error",
+    };
+  }
+
+  // Low confidence — uncertain prediction regardless of outcome
+  return {
+    ringColor: "text-warning",
+    iconColor: "text-warning",
+    Icon: ShieldQuestion,
+    label: bootStatus ? "BOOT SUCCESSFUL" : "BOOT FAILED",
+    badgeClass: bootStatus ? "badge-success" : "badge-error",
+  };
+}
+
 function PredictionCard({ prediction, bootStatus }) {
+  const { ringColor, iconColor, Icon, label, badgeClass } =
+    getStatusMeta(bootStatus, prediction.confidence);
+
   return (
-    <div className="hero bg-base-100 rounded-xl shadow mb-6">
+    <div className="card bg-base-100 shadow mb-6">
+      <div className="card-body">
 
-      <div className="hero-content w-full">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
 
-        <div className="w-full flex justify-between items-center">
+          {/* ── Left: class + boot status ── */}
+          <div className="flex items-start gap-4">
 
-          <div>
+            {/* Status icon */}
+            <div className={`mt-1 shrink-0 ${iconColor}`}>
+              <Icon size={36} strokeWidth={1.5} />
+            </div>
 
-            <p className="text-sm uppercase opacity-60">
-              Prediction
-            </p>
+            <div>
+              {/* Section label */}
+              <p className="text-xs font-mono uppercase tracking-widest text-base-content/40 mb-1">
+                ML Prediction
+              </p>
 
-            <h1 className="text-5xl font-bold mt-2">
-              {prediction.class}
-            </h1>
+              {/* Prediction class — h2 since h1 is in ReportHeader */}
+              <h2 className="text-4xl font-bold tracking-tight text-base-content">
+                {prediction.class}
+              </h2>
 
-            <div className="mt-4">
-
-              <div
-                className={`badge ${
-                  bootStatus
-                    ? "badge-success"
-                    : "badge-error"
-                } badge-lg`}
-              >
-                {bootStatus
-                  ? "BOOT SUCCESSFUL"
-                  : "BOOT FAILED"}
+              {/* Boot status badge */}
+              <div className="mt-3">
+                <span className={`badge ${badgeClass} badge-lg font-semibold`}>
+                  {label}
+                </span>
               </div>
-
             </div>
 
           </div>
 
-          <div className="text-center">
-
+          {/* ── Right: confidence ring ── */}
+          <div className="flex flex-col items-center gap-2 shrink-0">
             <div
-              className="radial-progress text-error"
-              style={{ "--value": prediction.confidence }}
+              className={`radial-progress font-bold text-sm ${ringColor}`}
+              style={{
+                "--value": prediction.confidence,
+                "--size": "6rem",
+                "--thickness": "6px",
+              }}
               role="progressbar"
+              aria-label={`Model confidence: ${prediction.confidence}%`}
+              aria-valuenow={prediction.confidence}
+              aria-valuemin={0}
+              aria-valuemax={100}
             >
               {prediction.confidence}%
             </div>
-
-            <p className="mt-3 font-semibold">
+            <p className="text-xs text-base-content/50 font-medium tracking-wide uppercase">
               Confidence
             </p>
-
+            {prediction.confidence < CONFIDENCE_HIGH && (
+              <span className="badge badge-warning badge-sm">Low Confidence</span>
+            )}
           </div>
 
         </div>
 
       </div>
-
     </div>
   );
 }
 
 export default PredictionCard;
-
-
-
-
-
-// function PredictionCard({ prediction, bootStatus }) {
-//   return (
-//     <div className="card bg-base-100 shadow mb-6">
-
-//       <div className="card-body">
-
-//         <div className="flex justify-between items-center">
-
-//           <div>
-
-//             <p className="text-sm opacity-70">
-//               Prediction
-//             </p>
-
-//             <h2 className="text-3xl font-bold">
-//               {prediction.class}
-//             </h2>
-
-//           </div>
-
-//           <div className="text-right">
-
-//             <div className="badge badge-error mb-2">
-//               {bootStatus ? "SUCCESS" : "FAILED"}
-//             </div>
-
-//             <p>
-//               Confidence
-//             </p>
-
-//             <p className="text-2xl font-bold">
-//               {prediction.confidence}%
-//             </p>
-
-//           </div>
-
-//         </div>
-
-//       </div>
-
-//     </div>
-//   );
-// }
-
-// export default PredictionCard;
-
-
-
-
-
-// import Card from "../shared/Card";
-// import StatItem from "../shared/StatItem";
-
-// function PredictionCard({ prediction }) {
-//   return (
-//     <Card>
-//       <h2 className="text-2xl font-semibold mb-4">
-//         Prediction
-//       </h2>
-
-//       <StatItem
-//         label="Class"
-//         value={prediction.class}
-//       />
-
-//       <StatItem
-//         label="Confidence"
-//         value={`${prediction.confidence}%`}
-//       />
-//     </Card>
-//   );
-// }
-
-// export default PredictionCard;
-
-
-
-
-// function PredictionCard({ prediction }) {
-//   return (
-//     <div
-//       style={{
-//         border: "1px solid #ddd",
-//         padding: "20px",
-//         borderRadius: "10px",
-//         marginBottom: "20px",
-//       }}
-//     >
-//       <h2>Prediction</h2>
-
-//       <p>
-//         <strong>Class:</strong>{" "}
-//         {prediction.class}
-//       </p>
-
-//       <p>
-//         <strong>Confidence:</strong>{" "}
-//         {prediction.confidence}%
-//       </p>
-//     </div>
-//   );
-// }
-
-// export default PredictionCard;

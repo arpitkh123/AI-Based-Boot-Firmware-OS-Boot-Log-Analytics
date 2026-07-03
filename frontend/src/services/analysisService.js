@@ -23,3 +23,13 @@ export const checkBackend = async () => {
 
   return response.data;
 };
+
+export const getHistory = async () => {
+  const response = await api.get("/history");
+  return response.data;
+};
+
+export const deleteHistoryItem = async (analysisId) => {
+  const response = await api.delete(`/history/${analysisId}`);
+  return response.data;
+};

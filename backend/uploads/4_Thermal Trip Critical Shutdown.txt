@@ -1,0 +1,57 @@
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+[    0.000000] Linux version 6.18.21-v8+ (dom@buildbot) (aarch64-linux-gnu-gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #1967 SMP PREEMPT Wed Apr  8 18:17:01 BST 2026
+[    0.000000] KASLR enabled
+[    0.000000] Machine model: Raspberry Pi 3 Model B Plus Rev 1.4
+[    0.000000] efi: UEFI not found.
+[    0.000000] Reserved memory: created CMA memory pool at 0x0000000037400000, size 64 MiB
+[    0.000000] pcpu-alloc: s95448 r8192 d31528 u135168 alloc=33*4096
+[    0.000000] Detected VIPT I-cache on CPU0
+[    0.000000] CPU features: detected: Kernel page table isolation (KPTI)
+[    0.004608] smp: Bringing up secondary CPUs ...
+[    0.005119] Detected VIPT I-cache on CPU1
+[    0.006034] Detected VIPT I-cache on CPU2
+[    0.006823] Detected VIPT I-cache on CPU3
+[    0.007191] SMP: Total of 4 processors activated.
+[    0.021589] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.031643] bcm2835-mbox 3f00b880.mailbox: mailbox enabled
+[    1.524607] dwc_otg 3f980000.usb: DWC OTG Controller
+[    1.529279] usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.18
+[    1.621016] bcm2835-wdt bcm2835-wdt: Broadcom BCM2835 watchdog timer
+[    1.731005] Waiting for root device /dev/mmcblk0p2...
+[    1.865248] mmcblk0: mmc0:d555 SK128 119 GiB
+[    1.930977] EXT4-fs (mmcblk0p2): mounted filesystem 990a05e4-d62a-49d6-8c1d-91d8dac30c9b r/w with ordered data mode.
+[    1.945517] Run /sbin/init as init process
+[    2.025053] usb 1-1: New USB device found, idVendor=0424, idProduct=2514, bcdDevice= b.b3
+[    2.312807] usb 1-1.1: new high-speed USB device number 3 using dwc_otg
+[    2.416954] usb 1-1.1: New USB device found, idVendor=0424, idProduct=2514, bcdDevice= b.b3
+[    3.244805] usb 1-1.1.1: new high-speed USB device number 6 using dwc_otg
+[    3.349024] usb 1-1.1.1: New USB device found, idVendor=0424, idProduct=7800, bcdDevice= 3.00
+[    3.621358] lan78xx 1-1.1.1:1.0 (unnamed net_device) (uninitialized): int urb period 64
+[    3.714793] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000018
+[    3.714805] Mem abort info:
+[    3.714810]   ESR = 0x96000004
+[    3.714815]   EC = 0x25: DABT (current EL), IL = 32 bits
+[    3.714820]   SET = 0, FnV = 0
+[    3.714825]   EA = 0, S1PTW = 0
+[    3.714830] Data abort info:
+[    3.714835]   ISV = 0, ISS = 0x00000004
+[    3.714840]   CM = 0, WnR = 0
+[    3.714845] user pgtable: 4k pages, 48-bit VAs, pgdp=00000000012e8000
+[    3.714850] [0000000000000018] pgd=0000000000000000, p4d=0000000000000000
+[    3.714861] Internal error: Oops: 96000004 [#1] PREEMPT SMP
+[    3.714867] Modules linked in: lan78xx(+) smsc95xx usbnet mii
+[    3.714880] CPU: 2 PID: 142 Comm: systemd-udevd Not tainted 6.18.21-v8+ #1967
+[    3.714885] Hardware name: Raspberry Pi 3 Model B Plus Rev 1.4 (DT)
+[    3.714890] pstate: 80000005 (Nzcv daif -PAN -UAO -TCO BTYPE=--)
+[    3.714897] pc : lan78xx_probe+0x2c0/0x890 [lan78xx]
+[    3.714909] lr : lan78xx_probe+0x2a8/0x890 [lan78xx]
+[    3.714965] Call trace:
+[    3.714970]  lan78xx_probe+0x2c0/0x890 [lan78xx]
+[    3.714981]  usb_probe_interface+0x1b4/0x2c0
+[    3.714991]  really_probe+0x184/0x3c8
+[    3.714998]  driver_probe_device+0x5c/0xc0
+[    3.715004]  __device_attach_driver+0xb8/0x100
+[    3.715011]  bus_for_each_drv+0x7c/0xd0
+[    3.715060] ---[ end trace 0000000000000001 ]---
+[    3.715065] Kernel panic - not syncing: Fatal exception
+[    3.715072] SMP: stopping secondary CPUs

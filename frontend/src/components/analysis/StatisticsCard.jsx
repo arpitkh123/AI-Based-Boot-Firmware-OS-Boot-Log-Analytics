@@ -2,177 +2,83 @@ import {
   FileText,
   CircleX,
   TriangleAlert,
-  Blocks,
-  Brain,
+  Clock,
+  Percent,
 } from "lucide-react";
 
-function StatisticsCard({ statistics }) {
+/**
+ * A single stat cell — keeps the stat markup DRY.
+ */
+function StatCell({ icon: Icon, iconClass = "", value, valueClass = "", label, desc }) {
   return (
-    <div className="stats shadow w-full mb-6">
-
-      <div className="stat">
-
-        <FileText size={22} />
-
-        <div className="stat-value">
-          {statistics.logsParsed}
-        </div>
-
-        <div className="stat-title">
-          Logs
-        </div>
-
+    <div className="stat">
+      <div className={`stat-figure ${iconClass}`}>
+        <Icon size={20} />
       </div>
-
-      <div className="stat">
-
-        <CircleX
-          className="text-error"
-          size={22}
-        />
-
-        <div className="stat-value text-error">
-          {statistics.errors}
-        </div>
-
-        <div className="stat-title">
-          Errors
-        </div>
-
+      <div className={`stat-value text-2xl ${valueClass}`}>
+        {value}
       </div>
-
-      <div className="stat">
-
-        <TriangleAlert
-          className="text-warning"
-          size={22}
-        />
-
-        <div className="stat-value text-warning">
-          {statistics.warnings}
-        </div>
-
-        <div className="stat-title">
-          Warnings
-        </div>
-
+      <div className="stat-title text-xs">
+        {label}
       </div>
-
-      <div className="stat">
-
-        <Blocks size={22} />
-
-        <div className="stat-value">
-          {statistics.templates}
+      {desc && (
+        <div className="stat-desc text-[10px] opacity-60">
+          {desc}
         </div>
+      )}
+    </div>
+  );
+}
 
-        <div className="stat-title">
-          Templates
-        </div>
+function StatisticsCard({ statistics }) {
+  const total = statistics.totalLines || statistics.logsParsed || 100;
+  const parsed = statistics.logsParsed || 100;
+  const successRatio = total > 0 ? Math.round((parsed / total) * 100) : 100;
 
-      </div>
+  return (
+    <div className="stats stats-vertical lg:stats-horizontal shadow w-full mb-6 border border-base-300">
 
-      <div className="stat">
+      <StatCell
+        icon={FileText}
+        value={total}
+        label="Total Log Lines"
+        desc={`${parsed} parsed successfully`}
+      />
 
-        <Brain size={22} />
+      <StatCell
+        icon={Percent}
+        value={`${successRatio}%`}
+        label="Parsing Quality"
+        desc={`${statistics.ignoredLines || 0} lines ignored`}
+      />
 
-        <div className="stat-value">
-          {statistics.features}
-        </div>
+      <StatCell
+        icon={CircleX}
+        iconClass="text-error"
+        value={statistics.errors}
+        valueClass="text-error"
+        label="Errors Detected"
+        desc="Critical register panics"
+      />
 
-        <div className="stat-title">
-          Features
-        </div>
+      <StatCell
+        icon={TriangleAlert}
+        iconClass="text-warning"
+        value={statistics.warnings}
+        valueClass="text-warning"
+        label="Warnings Flagged"
+        desc="Subsystem delay flags"
+      />
 
-      </div>
+      <StatCell
+        icon={Clock}
+        value={`${statistics.templates || 0}`}
+        label="Mined Clusters"
+        desc="Sequential template logs"
+      />
 
     </div>
   );
 }
 
 export default StatisticsCard;
-
-
-
-
-
-// function StatisticsCard({ statistics }) {
-//   return (
-//     <div className="stats shadow w-full mb-6">
-
-//       <div className="stat">
-//         <div className="stat-value">
-//           {statistics.logsParsed}
-//         </div>
-//         <div className="stat-title">
-//           Logs
-//         </div>
-//       </div>
-
-//       <div className="stat">
-//         <div className="stat-value text-error">
-//           {statistics.errors}
-//         </div>
-//         <div className="stat-title">
-//           Errors
-//         </div>
-//       </div>
-
-//       <div className="stat">
-//         <div className="stat-value text-warning">
-//           {statistics.warnings}
-//         </div>
-//         <div className="stat-title">
-//           Warnings
-//         </div>
-//       </div>
-
-//       <div className="stat">
-//         <div className="stat-value">
-//           {statistics.templates}
-//         </div>
-//         <div className="stat-title">
-//           Templates
-//         </div>
-//       </div>
-
-//       <div className="stat">
-//         <div className="stat-value">
-//           {statistics.features}
-//         </div>
-//         <div className="stat-title">
-//           Features
-//         </div>
-//       </div>
-
-//     </div>
-//   );
-// }
-
-// export default StatisticsCard;
-
-
-
-
-// function StatisticsCard({ statistics }) {
-//   return (
-//     <div
-//       style={{
-//         border: "1px solid #ddd",
-//         padding: "20px",
-//         borderRadius: "10px",
-//         marginBottom: "20px",
-//       }}
-//     >
-//       <h2>Statistics</h2>
-
-//       <p><strong>Logs:</strong> {statistics.logsParsed}</p>
-//       <p><strong>Errors:</strong> {statistics.errors}</p>
-//       <p><strong>Warnings:</strong> {statistics.warnings}</p>
-//       <p><strong>Templates:</strong> {statistics.templates}</p>
-//       <p><strong>Features:</strong> {statistics.features}</p>
-//     </div>
-//   );
-// }
-
-// export default StatisticsCard;

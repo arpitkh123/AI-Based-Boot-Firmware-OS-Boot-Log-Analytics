@@ -1,191 +1,136 @@
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import {
-  CheckCircle2,
-  Circle,
-  LoaderCircle,
-} from "lucide-react";
+import { useLocation } from "react-router-dom";
+import { CheckCircle2, Circle, LoaderCircle, Cpu } from "lucide-react";
+import PageTransition from "../../components/shared/PageTransition";
 
-import { analyzeLog } from "../../services/analysisService";
-
-const STEPS = [
-  "Reading Boot Log",
-  "Parsing UART Logs",
-  "Extracting Templates",
-  "Feature Engineering",
-  "Running ML Model",
-  "Rule-Based Analysis",
-  "Generating AI Recommendation",
-];
+import { useAnalysis } from "../../hooks/useAnalysis";
+import { PROCESSING_STEPS } from "../../constants/steps";
 
 function Processing() {
-  const navigate = useNavigate();
   const location = useLocation();
+  const fileName = location.state?.file?.name ?? "boot.log";
 
-  const file = location.state?.file;
+  const { currentStep, totalSteps } = useAnalysis();
 
-  const [currentStep, setCurrentStep] = useState(0);
-
-  useEffect(() => {
-    if (!file) {
-      navigate("/upload");
-      return;
-    }
-
-    let backendResult = null;
-    let backendFinished = false;
-
-    const callBackend = async () => {
-      try {
-        backendResult = await analyzeLog(file);
-        backendFinished = true;
-      } catch (error) {
-        console.error(error);
-        alert("Analysis Failed");
-        navigate("/upload");
-      }
-    };
-
-    callBackend();
-
-    let step = 0;
-
-    const interval = setInterval(() => {
-      step++;
-
-      setCurrentStep(step);
-
-      if (step >= STEPS.length) {
-        clearInterval(interval);
-
-        const waitForBackend = setInterval(() => {
-          if (backendFinished) {
-            clearInterval(waitForBackend);
-
-            navigate("/analysis", {
-              state: {
-                result: backendResult,
-              },
-            });
-          }
-        }, 200);
-      }
-    }, 500);
-
-    return () => clearInterval(interval);
-  }, [file, navigate]);
+  const progressPercent = Math.round((currentStep / totalSteps) * 100);
 
   return (
-    <div className="min-h-screen bg-base-200 flex items-center justify-center">
+    <PageTransition>
+      <div className="min-h-[calc(100vh-80px)] bg-base-200 flex items-center justify-center p-4 lg:p-8">
+        <div className="card bg-base-100 shadow-xl w-full max-w-2xl overflow-hidden">
+          <div className="card-body gap-6 p-8 lg:p-12">
 
-      <div className="card bg-base-100 shadow-xl w-full max-w-2xl">
-
-        <div className="card-body">
-
-          <h1 className="text-3xl font-bold text-center">
-            AI Boot Log Analytics
-          </h1>
-
-          <p className="text-center opacity-70 mb-6">
-            Processing Uploaded Boot Log...
-          </p>
-
-          <div className="space-y-4">
-
-            {STEPS.map((step, index) => (
-              <div
-                key={step}
-                className="flex items-center gap-3"
-              >
-                {index < currentStep ? (
-                  <CheckCircle2 className="text-success" />
-                ) : index === currentStep ? (
-                  <LoaderCircle className="animate-spin text-primary" />
-                ) : (
-                  <Circle className="text-gray-400" />
-                )}
-
-                <span>{step}</span>
+            {/* ── Header ── */}
+            <div className="text-center">
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <Cpu size={22} className="text-primary animate-pulse" />
+                <span className="text-xs font-mono tracking-widest text-base-content/40 uppercase">
+                  Running Diagnostics Pipeline
+                </span>
               </div>
-            ))}
+
+              <h1 className="text-3xl font-extrabold tracking-tight text-base-content">
+                Analyzing Boot Log
+              </h1>
+
+              <p
+                className="text-xs text-base-content/50 mt-2 font-mono truncate max-w-md mx-auto bg-base-200 px-3 py-1.5 rounded-lg border border-base-300"
+                title={fileName}
+              >
+                {fileName}
+              </p>
+            </div>
+
+            {/* ── Progress Bar ── */}
+            <div className="space-y-2 bg-base-200/30 p-4 rounded-xl border border-base-300/50">
+              <div className="flex justify-between items-center">
+                <span className="text-xs text-base-content/60 font-semibold uppercase tracking-wider font-mono">
+                  Overall Progress
+                </span>
+                <span className="text-xs font-mono text-primary font-bold">
+                  {progressPercent}%
+                </span>
+              </div>
+              <progress
+                id="analysis-progress"
+                className="progress progress-primary w-full h-3"
+                value={progressPercent}
+                max="100"
+              />
+            </div>
+
+            {/* ── Step List ── */}
+            <div className="space-y-4 py-2">
+              {PROCESSING_STEPS.map((step, index) => {
+                const isDone = index < currentStep;
+                const isActive = index === currentStep;
+
+                return (
+                  <div
+                    key={step}
+                    className={`flex items-center gap-4 p-3 rounded-lg border transition-all duration-300 ${
+                      isActive
+                        ? "bg-base-200 border-primary/30 shadow-sm"
+                        : isDone
+                        ? "bg-base-200/20 border-transparent opacity-60"
+                        : "bg-transparent border-transparent"
+                    }`}
+                  >
+                    {/* Step icon */}
+                    <div className="shrink-0 w-6 flex justify-center">
+                      {isDone ? (
+                        <CheckCircle2
+                          size={20}
+                          className="text-success"
+                        />
+                      ) : isActive ? (
+                        <LoaderCircle
+                          size={20}
+                          className="animate-spin text-primary"
+                        />
+                      ) : (
+                        <Circle
+                          size={20}
+                          className="text-base-content/20"
+                        />
+                      )}
+                    </div>
+
+                    {/* Step label */}
+                    <span
+                      className={[
+                        "text-sm transition-all duration-300 flex-1 min-w-0 truncate",
+                        isDone
+                          ? "text-base-content/50 line-through decoration-base-content/20"
+                          : isActive
+                          ? "text-base-content font-bold"
+                          : "text-base-content/25",
+                      ].join(" ")}
+                    >
+                      {step}
+                    </span>
+
+                    {/* Done badge */}
+                    {isDone && (
+                      <span className="badge badge-success badge-outline badge-xs font-mono px-2 py-1 uppercase tracking-wider text-[9px]">
+                        done
+                      </span>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="divider my-0 border-base-300" />
+
+            <p className="text-center text-xs text-base-content/40 font-medium">
+              Please keep this browser window open while the diagnostic analysis is completed.
+            </p>
 
           </div>
-
-          <div className="divider"></div>
-
-          <p className="text-center text-sm opacity-60">
-            Please wait while the AI analyzes the boot log...
-          </p>
-
         </div>
-
       </div>
-
-    </div>
+    </PageTransition>
   );
 }
 
 export default Processing;
-
-
-
-// import { useEffect } from "react";
-// import { useLocation, useNavigate } from "react-router-dom";
-
-// import { analyzeLog } from "../../services/analysisService";
-
-// function Processing() {
-//   const navigate = useNavigate();
-//   const location = useLocation();
-
-//   const file = location.state?.file;
-
-//   useEffect(() => {
-//     const processLog = async () => {
-//       if (!file) {
-//         navigate("/upload");
-//         return;
-//       }
-
-//       try {
-//         console.log("Starting Analysis...");
-
-//         const result = await analyzeLog(file);
-
-//         console.log(result);
-
-//         navigate("/analysis", {
-//           state: {
-//             result,
-//           },
-//         });
-//       } catch (error) {
-//         console.error(error);
-//         alert("Failed to analyze log.");
-
-//         navigate("/upload");
-//       }
-//     };
-
-//     processLog();
-//   }, [file, navigate]);
-
-//   return (
-//     <div style={{ padding: "40px" }}>
-//       <h1>Analyzing Boot Log...</h1>
-
-//       <p>Please wait while the system processes your file.</p>
-//     </div>
-//   );
-// }
-
-// export default Processing;
-
-
-
-
-// function Processing() {
-//     return <h1>Processing Page</h1>;
-// }
-
-// export default Processing;
