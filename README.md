@@ -38,16 +38,15 @@ This **AI-based boot log analytics platform** ingests logs from every stage, aut
 ![Demo GIF](docs/demo.gif)
 
 ### Dashboard Screenshots
-*(Placeholders for UI screenshots)*
 
 **Home Dashboard**
-![Home Dashboard](docs/dashboard.png)
+![Home Dashboard](img/Dashboard.png)
 
-**Boot Timeline & Anomalies**
-![Boot Timeline](docs/timeline.png)
+**History & Boot Timeline**
+![History](img/History.png)
 
-**AI Root Cause Analysis**
-![Root Cause](docs/root_cause.png)
+**Log Processing & Anomaly Analysis**
+![Processing](img/Processing.png)
 
 ---
 
@@ -209,6 +208,29 @@ The confusion matrix and evaluation metrics demonstrate that the proposed AI-Bas
 
 ---
 
+## 📈 Model Visualizations
+
+### PCA Clusters
+*(Healthy boot logs form a compact cluster, while faulty logs are dispersed)*
+![PCA Clusters](visualizations/pca_clusters.png)
+
+### Decision Score Distribution
+*(Clear separation between normal and abnormal boots)*
+![Score Distribution](visualizations/score_distribution.png)
+
+### Confusion Matrix
+*(High accuracy in classifying boot outcomes)*
+![Confusion Matrix](visualizations/confusion_matrix.png)
+
+### Learning Curves
+**By Data Size:**
+![Learning Curve - Data Size](visualizations/learning_curve_data_size.png)
+
+**By Estimators:**
+![Learning Curve - Estimators](visualizations/learning_curve_estimators.png)
+
+---
+
 ## 🚧 Challenges & Learning Outcomes
 
 ### Challenges Overcome
@@ -280,11 +302,6 @@ npm run dev
 
 ---
 
-## ⚖️ License
-
-**MIT License**
-
----
 
 ## 🙏 Acknowledgement
 
