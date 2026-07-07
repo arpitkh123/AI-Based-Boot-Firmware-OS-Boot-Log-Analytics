@@ -56,13 +56,11 @@ The purpose of this dataset is to generate realistic boot failure scenarios for 
 | E01 | Missing Root Filesystem | Incorrect root= parameter | Kernel | RootFS mount failure |
 | E02 | Invalid Boot Arguments | Wrong bootargs passed by U-Boot | Kernel | Boot parameter validation |
 | E03 | Missing init Process | Remove `/init` from BusyBox RootFS | Userspace | Startup failure |
-| E04 | Corrupted BusyBox Binary | Modify BusyBox executable | Userspace | Application startup anomaly |
 | E05 | Missing Device Tree Blob (DTB) | Remove DTB file from boot partition | U-Boot / Kernel | Hardware description failure |
 | E06 | Invalid DTB Reference | Wrong DTB filename in boot config | U-Boot | Boot configuration failure |
 | E07 | Incorrect Kernel Image | Replace kernel image with invalid file | Kernel | Kernel load failure |
 | E08 | Firmware Configuration Error | Modify `config.txt` parameters | Firmware | Early boot anomaly |
 | E09 | UART Console Misconfiguration | Invalid console boot argument | Kernel | Log collection failure testing |
-| E10 | Delayed Service Startup | Artificial startup delay | Userspace | Performance anomaly detection |
 
 ---
 
@@ -87,8 +85,6 @@ Kernel
 BusyBox / User Space
 │
 ├── E03
-├── E04
-├── E10
 ---
 
 ## Dataset Classification
