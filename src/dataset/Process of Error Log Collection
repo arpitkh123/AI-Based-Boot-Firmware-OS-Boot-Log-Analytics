@@ -56,11 +56,11 @@ The purpose of this dataset is to generate realistic boot failure scenarios for 
 | E01 | Missing Root Filesystem | Incorrect root= parameter | Kernel | RootFS mount failure |
 | E02 | Invalid Boot Arguments | Wrong bootargs passed by U-Boot | Kernel | Boot parameter validation |
 | E03 | Missing init Process | Remove `/init` from BusyBox RootFS | Userspace | Startup failure |
-| E05 | Missing Device Tree Blob (DTB) | Remove DTB file from boot partition | U-Boot / Kernel | Hardware description failure |
-| E06 | Invalid DTB Reference | Wrong DTB filename in boot config | U-Boot | Boot configuration failure |
-| E07 | Incorrect Kernel Image | Replace kernel image with invalid file | Kernel | Kernel load failure |
-| E08 | Firmware Configuration Error | Modify `config.txt` parameters | Firmware | Early boot anomaly |
-| E09 | UART Console Misconfiguration | Invalid console boot argument | Kernel | Log collection failure testing |
+| E04 | Missing Device Tree Blob (DTB) | Remove DTB file from boot partition | U-Boot / Kernel | Hardware description failure |
+| E05 | Invalid DTB Reference | Wrong DTB filename in boot config | U-Boot | Boot configuration failure |
+| E06 | Incorrect Kernel Image | Replace kernel image with invalid file | Kernel | Kernel load failure |
+| E07 | Firmware Configuration Error | Modify `config.txt` parameters | Firmware | Early boot anomaly |
+| E08 | UART Console Misconfiguration | Invalid console boot argument | Kernel | Log collection failure testing |
 
 ---
 
@@ -68,19 +68,19 @@ The purpose of this dataset is to generate realistic boot failure scenarios for 
 
 Firmware
 │
-├── E08
+├── E07
 │
 U-Boot
 │
+├── E04
 ├── E05
-├── E06
 │
 Kernel
 │
 ├── E01
 ├── E02
-├── E07
-├── E09
+├── E06
+├── E08
 │
 BusyBox / User Space
 │
