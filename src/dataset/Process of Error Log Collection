@@ -1,0 +1,133 @@
+# Error Boot Log Dataset
+
+## Overview
+
+This directory contains boot logs collected from controlled fault injection experiments performed on a Raspberry Pi 3B+ platform.
+
+The purpose of this dataset is to generate realistic boot failure scenarios for training and evaluating the AI-based boot log analytics system. Logs are captured across multiple boot stages and used for anomaly detection, failure classification, root-cause analysis, and boot-stage localization.
+
+---
+
+## Test Environment
+
+### Hardware Platform
+
+- Raspberry Pi 3B+
+- 32 GB+ microSD Card
+- USB-to-TTL UART Adapter
+- Host Machine for Log Collection
+
+### UART Configuration
+
+| Parameter | Value |
+|------------|---------|
+| Interface | UART Serial Console |
+| Baud Rate | 115200 |
+| Data Bits | 8 |
+| Stop Bits | 1 |
+| Parity | None |
+
+### UART Connections
+
+| Raspberry Pi Pin | UART Adapter |
+|------------------|-------------|
+| GPIO14 (TX) | RX |
+| GPIO15 (RX) | TX |
+| GND | GND |
+
+---
+
+## Boot Log Collection Process
+
+1. Configure Raspberry Pi boot environment.
+2. Connect UART adapter to Raspberry Pi GPIO serial pins.
+3. Introduce a controlled fault into the boot process.
+4. Power-cycle the device.
+5. Capture boot logs through UART.
+6. Store collected logs under the corresponding failure category.
+7. Label logs with failure type and affected boot stage.
+
+---
+
+## Fault Injection Matrix
+
+| ID | Failure Scenario | Injection Method | Expected Stage | Purpose |
+|----|------------------|------------------|----------------|---------|
+| E01 | Missing Root Filesystem | Incorrect root= parameter | Kernel | RootFS mount failure |
+| E02 | Invalid Boot Arguments | Wrong bootargs passed by U-Boot | Kernel | Boot parameter validation |
+| E03 | Missing init Process | Remove `/init` from BusyBox RootFS | Userspace | Startup failure |
+| E04 | Missing Device Tree Blob (DTB) | Remove DTB file from boot partition | U-Boot / Kernel | Hardware description failure |
+| E05 | Invalid DTB Reference | Wrong DTB filename in boot config | U-Boot | Boot configuration failure |
+| E06 | Incorrect Kernel Image | Replace kernel image with invalid file | Kernel | Kernel load failure |
+| E07 | Firmware Configuration Error | Modify `config.txt` parameters | Firmware | Early boot anomaly |
+| E08 | UART Console Misconfiguration | Invalid console boot argument | Kernel | Log collection failure testing |
+
+---
+
+## Boot Stage Mapping
+
+Firmware
+│
+├── E07
+│
+U-Boot
+│
+├── E04
+├── E05
+│
+Kernel
+│
+├── E01
+├── E02
+├── E06
+├── E08
+│
+BusyBox / User Space
+│
+├── E03
+---
+
+## Dataset Classification
+
+### Normal Boot Logs
+
+Successful boot sequence:
+
+Firmware → U-Boot → Linux Kernel → BusyBox RootFS → User Space
+
+### Error Boot Logs
+
+Boot attempts containing one or more intentionally injected faults.
+
+Each log is associated with:
+
+- Error ID
+- Failure Type
+- Failure Stage
+- Expected Outcome
+
+---
+
+## AI Training Usage
+
+The collected dataset is used for:
+
+### Isolation Forest
+
+Detects anomalous boot behavior by learning patterns from healthy boot logs and identifying deviations.
+
+### Rule-Based Engine
+
+Maps known log signatures to specific failure causes, including:
+
+- Root filesystem mount failures
+- Missing DTB
+- Invalid boot arguments
+- Missing init process
+- Firmware configuration errors
+
+---
+
+## Objective
+
+The generated dataset enables automated diagnosis of embedded Linux boot failures and supports the development of robust boot-log anomaly detection models.
