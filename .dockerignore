@@ -15,8 +15,25 @@ __pycache__/
 
 .env
 
-data/raw/
-models/trained/
+# data/raw/
+# models/trained/
 reports/
 
 *.log
+
+# Development / testing data
+data/
+!data/knowledge_base.json
+src/dataset/
+
+# Raspberry Pi boot files - not needed by the API
+boot_files/
+rootfs_files/
+
+# Frontend - will have its own Docker image
+frontend/
+
+# Development / testing
+tests/
+visualizations/
+img/
