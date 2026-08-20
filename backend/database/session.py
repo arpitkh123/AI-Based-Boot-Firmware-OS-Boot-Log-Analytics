@@ -1,5 +1,6 @@
 from sqlalchemy.orm import sessionmaker
-from database.connection import engine
+# from database.connection import engine
+from backend.database.connection import engine
 
 # Create the SessionLocal factory
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

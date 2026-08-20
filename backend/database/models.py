@@ -2,7 +2,8 @@ from sqlalchemy import Column, Integer, String, Float, Boolean, ForeignKey, Date
 from sqlalchemy.orm import relationship
 import datetime
 
-from database.base import Base
+# from database.base import Base
+from backend.database.base import Base
 
 class Analysis(Base):
     __tablename__ = "analysis"

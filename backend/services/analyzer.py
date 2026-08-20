@@ -16,8 +16,10 @@ except Exception as e:
     pipeline_available = False
     pipeline = None
 
-from database.session import SessionLocal
-from database.repository import AnalysisRepository
+# from database.session import SessionLocal
+# from database.repository import AnalysisRepository
+from backend.database.session import SessionLocal
+from backend.database.repository import AnalysisRepository
 
 # A simple cache to supplement the DB reconstruction for 100% UI compatibility
 _raw_dict_cache = {}

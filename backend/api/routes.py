@@ -4,7 +4,8 @@ import shutil
 # from fastapi import APIRouter, UploadFile, File, HTTPError, Response
 from fastapi import APIRouter, UploadFile, File, HTTPException
 
-from services.analyzer import analyze_log, get_history, delete_history_item
+# from services.analyzer import analyze_log, get_history, delete_history_item
+from backend.services.analyzer import analyze_log, get_history, delete_history_item
 
 
 router = APIRouter()

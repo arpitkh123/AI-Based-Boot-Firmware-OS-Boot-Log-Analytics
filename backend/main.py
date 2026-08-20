@@ -1,8 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from api.routes import router
-from database.init_db import init_db
+# from api.routes import router
+# from database.init_db import init_db
+
+from backend.api.routes import router
+from backend.database.init_db import init_db
 
 # Initialize database tables
 init_db()
