@@ -1,0 +1,36 @@
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+[    0.000000] Linux version 6.18.21-v8+ (dom@buildbot) (aarch64-linux-gnu-gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #1967 SMP PREEMPT Wed Apr  8 18:17:01 BST 2026
+[    0.000000] KASLR enabled
+[    0.000000] Machine model: Raspberry Pi 3 Model B Plus Rev 1.4
+[    0.000000] Reserved memory: created CMA memory pool at 0x0000000037400000, size 64 MiB
+[    0.000000] OF: reserved mem: initialized node linux,cma, compatible id shared-dma-pool
+[    0.000000] pcpu-alloc: s95448 r8192 d31528 u135168 alloc=33*4096
+[    0.000000] Detected VIPT I-cache on CPU0
+[    0.000000] CPU features: kernel page table isolation forced ON by KASLR
+[    0.004608] smp: Bringing up secondary CPUs ...
+[    0.007126] smp: Brought up 1 node, 4 CPUs
+[    0.007191] SMP: Total of 4 processors activated.
+[    0.008547] Memory: 850408K/970752K available
+[    0.021589] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    1.065110] io scheduler mq-deadline registered
+[    1.524607] dwc_otg 3f980000.usb: DWC OTG Controller
+[    1.608526] uart-pl011 3f201000.serial: cts_event_workaround enabled
+[    1.615306] bcm2835-aux-uart 3f215040.serial: there is not valid maps for state default
+[    1.617411] bcm2835-aux-uart 3f215040.serial: error -EINVAL: unable to register 8250 port
+[    1.618831] platform 3f215040.serial: probe of 3f215040.serial failed with error -22
+[    1.621016] bcm2835-wdt bcm2835-wdt: Broadcom BCM2835 watchdog timer
+[    1.731005] Waiting for root device /dev/mmcblk0p2...
+[    1.865248] mmcblk0: mmc0:d555 SK128 119 GiB
+[    1.930977] EXT4-fs (mmcblk0p2): mounted filesystem r/w with ordered data mode.
+[    1.945517] Run /sbin/init as init process
+[    1.947000] Warning: unable to open an initial console.
+[    1.948000] Kernel panic - not syncing: Attempted to kill init! exitcode=0x00000100
+[    1.948010] CPU: 0 UID: 0 PID: 1 Comm: init Not tainted 6.18.21-v8+ #1967 PREEMPT
+[    1.948015] Hardware name: Raspberry Pi 3 Model B Plus Rev 1.4 (DT)
+[    1.948021] Call trace:
+[    1.948027]  dump_stack_lvl+0x38/0x90
+[    1.948033]  panic+0x68/0x70
+[    1.948039]  do_exit+0x848/0xb58
+[    1.948045]  do_group_exit+0x38/0xa8
+[    1.949000] SMP: stopping secondary CPUs
+[    1.950000] ---[ end Kernel panic - not syncing: Attempted to kill init! exitcode=0x00000100 ]---

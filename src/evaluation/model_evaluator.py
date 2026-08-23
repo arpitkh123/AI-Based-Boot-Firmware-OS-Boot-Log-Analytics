@@ -10,6 +10,15 @@ import numpy as np
 
 import matplotlib.pyplot as plt
 
+from sklearn.metrics import (
+    precision_score,
+    recall_score,
+    f1_score,
+    precision_recall_curve,
+    auc,
+    confusion_matrix
+)
+
 
 logger = logging.getLogger(__name__)
 
@@ -125,6 +134,54 @@ class ModelEvaluator:
         }
 
         return summary
+
+
+
+    def evaluate_with_labels(
+        self,
+        dataframe: pd.DataFrame
+    ) -> Dict:
+        """
+        Evaluate predictions using ground truth labels.
+        Assumes 'label' column exists with 'error' or 'normal',
+        and 'anomaly_prediction' column exists (-1 for anomaly, 1 for normal).
+        """
+        if "label" not in dataframe.columns or "anomaly_prediction" not in dataframe.columns:
+            logger.warning("Missing 'label' or 'anomaly_prediction' column for supervised evaluation.")
+            return {}
+
+        # Map labels: error/anomaly = 1, normal/inlier = 0
+        y_true = (dataframe["label"] == "error").astype(int)
+        y_pred = (dataframe["anomaly_prediction"] == -1).astype(int)
+
+        precision = precision_score(y_true, y_pred, zero_division=0)
+        recall = recall_score(y_true, y_pred, zero_division=0)
+        f1 = f1_score(y_true, y_pred, zero_division=0)
+
+        # PR-AUC needs higher score = more anomalous. We use anomaly_strength if available.
+        if "anomaly_strength" in dataframe.columns:
+            y_scores = dataframe["anomaly_strength"]
+            precision_curve, recall_curve, _ = precision_recall_curve(y_true, y_scores)
+            pr_auc = auc(recall_curve, precision_curve)
+        else:
+            pr_auc = None
+
+        cm = confusion_matrix(y_true, y_pred)
+        # cm format: [[TN, FP], [FN, TP]]
+        tn, fp, fn, tp = cm.ravel() if len(cm.ravel()) == 4 else (0, 0, 0, 0)
+
+        return {
+            "precision": round(float(precision), 4),
+            "recall": round(float(recall), 4),
+            "f1_score": round(float(f1), 4),
+            "pr_auc": round(float(pr_auc), 4) if pr_auc is not None else None,
+            "confusion_matrix": {
+                "true_negative": int(tn),
+                "false_positive": int(fp),
+                "false_negative": int(fn),
+                "true_positive": int(tp)
+            }
+        }
 
 
 

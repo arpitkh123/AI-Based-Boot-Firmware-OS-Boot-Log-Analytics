@@ -470,6 +470,8 @@ class BootParser:
         configured failure priority.
         """
 
+        failures_found = []
+
         for failure in FAILURE_PRIORITY:
 
             matching_log = self._find_first_matching_log(
@@ -480,18 +482,18 @@ class BootParser:
             )
 
             if matching_log:
+                failures_found.append({
+                    "name": failure["name"],
+                    "reason": failure["reason"],
+                    "log": matching_log
+                })
 
-                return {
-
-                    "failure_type":
-                        failure["name"],
-
-                    "failure_reason":
-                        failure["reason"],
-
-                    "failure_log":
-                        matching_log
-                }
+        if failures_found:
+            return {
+                "failure_type": " & ".join([f["name"] for f in failures_found]),
+                "failure_reason": " | ".join([f["reason"] for f in failures_found]),
+                "failure_log": failures_found[0]["log"]
+            }
 
         return {
 

@@ -1,0 +1,29 @@
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+[    0.000000] Linux version 6.18.21-v8+ (dom@buildbot) (aarch64-linux-gnu-gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #1967 SMP PREEMPT Wed Apr  8 18:17:01 BST 2026
+[    0.000000] Machine model: Raspberry Pi 3 Model B Plus Rev 1.4
+[    0.000000] Reserved memory: created CMA memory pool at 0x0000000037400000, size 64 MiB
+[    0.000000] pcpu-alloc: s95448 r8192 d31528 u135168 alloc=33*4096
+[    0.000000] Detected VIPT I-cache on CPU0
+[    0.000000] CPU features: detected: Kernel page table isolation (KPTI)
+[    0.021589] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.025823] DMA: preallocated 128 KiB GFP_KERNEL pool for atomic allocations
+[    1.065110] io scheduler mq-deadline registered
+[    1.524607] dwc_otg 3f980000.usb: DWC OTG Controller
+[    1.621016] bcm2835-wdt bcm2835-wdt: Broadcom BCM2835 watchdog timer
+[    1.731005] Waiting for root device /dev/mmcblk0p2...
+[    1.865248] mmcblk0: mmc0:d555 SK128 119 GiB
+[    1.930977] EXT4-fs (mmcblk0p2): mounted filesystem 990a05e4-d62a-49d6-8c1d-91d8dac30c9b r/w with ordered data mode.
+[    1.945517] Run /sbin/init as init process
+[    2.102341] i2c-bcm2835 3f804000.i2c: i2c transfer timed out
+[    2.102355] i2c-bcm2835 3f804000.i2c: bus lockup detected, attempting recovery
+[    2.215432] i2c-bcm2835 3f804000.i2c: recovery failed, SCL is stuck low
+[    2.215489] bcm2835-wdt bcm2835-wdt: Watchdog hardware is disabled
+[    2.215602] Kernel panic - not syncing: Fatal hardware lockup on I2C bus 0
+[    2.215610] CPU: 1 UID: 0 PID: 42 Comm: i2c-recovery Not tainted 6.18.21-v8+ #1967 PREEMPT
+[    2.215615] Hardware name: Raspberry Pi 3 Model B Plus Rev 1.4 (DT)
+[    2.215622] Call trace:
+[    2.215628]  dump_stack_lvl+0x38/0x90
+[    2.215635]  panic+0x68/0x70
+[    2.215641]  i2c_recover_bus+0x1a4/0x2c0
+[    2.215880] SMP: stopping secondary CPUs
+[    2.217198] ---[ end Kernel panic - not syncing: Fatal hardware lockup on I2C bus 0 ]---

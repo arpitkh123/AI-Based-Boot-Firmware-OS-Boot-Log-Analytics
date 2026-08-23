@@ -1,0 +1,34 @@
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+[    0.000000] Linux version 6.18.21-v8+ (dom@buildbot) (aarch64-linux-gnu-gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #1967 SMP PREEMPT Wed Apr  8 18:17:01 BST 2026
+[    0.000000] Machine model: Raspberry Pi 3 Model B Plus Rev 1.4
+[    0.000000] Reserved memory: created CMA memory pool at 0x0000000037400000, size 64 MiB
+[    0.007191] SMP: Total of 4 processors activated.
+[    0.008547] Memory: 850408K/970752K available (14848K kernel code, 2446K rwdata, 5068K rodata)
+[    0.021589] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    1.522768] Using Buffer DMA mode
+[    1.524266] INFO:: FIQ DMA bounce buffers: virt = ffffffc080c9b000 dma = 0x00000000f7490000 len=9024
+[    1.524607] dwc_otg 3f980000.usb: DWC OTG Controller
+[    1.524669] dwc_otg 3f980000.usb: new USB bus registered, assigned bus number 1
+[    1.524741] dwc_otg 3f980000.usb: irq 74, io mem 0x00000000
+[    1.526278] Init: Port Power? op_state=1
+[    1.527718] Init: Power Port (0)
+[    1.529279] usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.18
+[    1.536949] hub 1-0:1.0: USB hub found
+[    1.538391] hub 1-0:1.0: 1 port detected
+[    1.540238] Module dwc_common_port init
+[    1.611000] usb 1-1: over-current change on port 1
+[    1.662000] hub 1-0:1.0: port 1 disabled by hub (EMI?), re-enabling...
+[    1.685000] usb 1-1: over-current condition
+[    1.710000] dwc_otg 3f980000.usb: DMA transfer error. HCINT 0x00000002
+[    1.710050] dwc_otg 3f980000.usb: Non-recoverable hardware error, halting HC
+[    1.710150] Kernel panic - not syncing: dwc_otg: Unrecoverable hardware failure
+[    1.710158] CPU: 0 UID: 0 PID: 32 Comm: irq/74-dwc_otg Not tainted 6.18.21-v8+ #1967 PREEMPT
+[    1.710164] Hardware name: Raspberry Pi 3 Model B Plus Rev 1.4 (DT)
+[    1.710170] Call trace:
+[    1.710176]  dump_stack_lvl+0x38/0x90
+[    1.710183]  panic+0x68/0x70
+[    1.710189]  dwc_otg_hcd_handle_hc_n_intr+0x6f0/0x820 [dwc_otg]
+[    1.710197]  dwc_otg_hcd_handle_intr+0x3a4/0x900 [dwc_otg]
+[    1.710206]  irq_thread_fn+0x2c/0x90
+[    1.710502] SMP: stopping secondary CPUs
+[    1.711204] ---[ end Kernel panic - not syncing: dwc_otg: Unrecoverable hardware failure ]---

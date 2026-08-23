@@ -1,0 +1,28 @@
+U-Boot 2026.04-00729-gf0000b4a57e9 (Apr 09 2026 - 15:37:18 +0530)
+
+DRAM:  948 MiB
+RPI 3 Model B+ (0xa020d4)
+Core:  88 devices, 13 uclasses, devicetree: board
+MMC:   mmc@7e202000: 0, mmcnr@7e300000: 1
+Loading Environment from FAT... OK
+In:    serial,usbkbd
+Out:   serial,vidconsole
+Err:   serial,vidconsole
+Net:   No ethernet found.
+
+starting USB...
+USB DWC2
+Bus usb@7e980000: 5 USB Device(s) found
+       scanning usb for storage devices... 0 Storage Device(s) found
+Hit any key to stop autoboot: 2Hit any key to stop autoboot: 1Hit any key to stop autoboot: 0
+U-Boot> fatload mmc 0:1 0x00080000 kernel8.img
+10437862 bytes read in 438 ms (22.7 MiB/s)
+U-Boot> fatload mmc 0:1 0x05600000 bcm2710-rpi-3-b-plus.dtb
+** File not found bcm2710-rpi-3-b-plus.dtb **
+U-Boot> booti 0x00080000 - 0x05600000
+No FDT memory reservation map
+ERROR: Trying to boot Linux FDT but no FDT address was set
+       Please set the fdt_addr_r environment variable and ensure that the
+       FDT is correct (e.g. not for another board/arch).
+Could not find a valid device tree
+U-Boot>

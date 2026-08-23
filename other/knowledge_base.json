@@ -19,6 +19,36 @@
       "confidence": "HIGH"
     },
     {
+      "match": "kernel panic - not syncing",
+      "type": "Kernel Panic",
+      "resolution": "The kernel encountered an unrecoverable error. Check the lines above for the root cause (NULL deref, OOM, init killed). If 'VFS: Unable to mount root fs', verify root= in bootargs points to correct partition.",
+      "confidence": "HIGH"
+    },
+    {
+      "match": "null pointer dereference",
+      "type": "NULL Pointer Dereference",
+      "resolution": "A kernel driver accessed invalid memory. Check the Call Trace for the faulting module. If it's a third-party driver, try updating the kernel. If in a core module, file a bug report.",
+      "confidence": "HIGH"
+    },
+    {
+      "match": "out of memory: kill process",
+      "type": "OOM Kill Event",
+      "resolution": "System ran out of RAM. 1) Reduce running services. 2) Add swap space: 'sudo dphys-swapfile setup && sudo dphys-swapfile swapon'. 3) Check for memory leaks in applications.",
+      "confidence": "HIGH"
+    },
+    {
+      "match": "kernel bug at",
+      "type": "Kernel BUG Assertion",
+      "resolution": "A kernel assertion failed. Check the file:line reference (e.g., net/core/skbuff.c:102). Update to the latest kernel with 'sudo rpi-update'. If persistent, report to raspberrypi/linux.",
+      "confidence": "HIGH"
+    },
+    {
+      "match": "rcu.*self-detected stall",
+      "type": "RCU CPU Stall",
+      "resolution": "A CPU got stuck in a long-running kernel operation. Often caused by: 1) SD card I/O delays. 2) Buggy kernel module. 3) Hardware overheating. Check 'vcgencmd measure_temp'.",
+      "confidence": "MEDIUM"
+    },
+    {
       "match": "ext4.*error",
       "type": "Filesystem Corruption",
       "resolution": "The ext4 filesystem detected errors. 1) Run 'fsck.ext4 -f /dev/mmcblk0p2' from another system. 2) Check SD card health with 'badblocks'. 3) Replace SD card if errors persist.",
@@ -76,6 +106,12 @@
       "match": "usb.*device descriptor read.*error",
       "type": "USB Device Enumeration Error",
       "resolution": "A USB device failed to enumerate. 1) Unplug and replug the device. 2) Try a powered USB hub. 3) Check power supply. 4) Add 'max_usb_current=1' to config.txt.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "match": "segfault",
+      "type": "Segmentation Fault",
+      "resolution": "A userspace process crashed. Check the process name and address. 1) Reinstall the affected package. 2) Check for SD card corruption. 3) Test RAM with memtester.",
       "confidence": "MEDIUM"
     },
     {

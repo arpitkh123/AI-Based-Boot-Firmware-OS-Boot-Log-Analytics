@@ -274,7 +274,13 @@ class InferencePipeline:
             
             kb_matches = [a for a in rule_anomalies if "kb_resolution" in a]
             if kb_matches:
-                resolution_text = "\n".join([f"- {a['reason']}: {a['kb_resolution']}" for a in kb_matches])
+                unique_resolutions = []
+                resolution_lines = []
+                for a in kb_matches:
+                    if a['kb_resolution'] not in unique_resolutions:
+                        unique_resolutions.append(a['kb_resolution'])
+                        resolution_lines.append(f"- {a['reason']}: {a['kb_resolution']}")
+                resolution_text = "\n".join(resolution_lines)
                 report = {
                     "metadata": {"processing_time_seconds": 0.0},
                     "llm_explanation": f"**Known Failure Detected (Bypassed AI)**\n{resolution_text}"
